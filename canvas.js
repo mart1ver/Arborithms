@@ -1,16 +1,21 @@
 var jsonData;
 
 fetch("Trees.json").then(response => response.json()).then(data => {
-    console.log("[---->", data);
+    // console.log("[---->", data);
     jsonData = data;
-    if(data) {
-        for(var i in data) {
+    if (data) {
+        var x = document.createElement("DATALIST"); x.setAttribute("id", "varieties");
+        for (var i in data) {
             treeSettings.set(i, data[i]);
-            console.log("******  ", i);
-            let setx =  treeSettings.get(i);
+            var a1 = document.createElement("OPTION"); a1.setAttribute("value", i);
+            x.appendChild(a1)
+            document.body.appendChild(x);
+            // console.log("******  ", i);
+            let setx = treeSettings.get(i);
             setx.colorBase = new Color(setx.colorBase.r, setx.colorBase.g, setx.colorBase.b);
             setx.colorLeaves = new Color(setx.colorLeaves.r, setx.colorLeaves.g, setx.colorLeaves.b);
             treeSettings.set(i, setx);
+
 
         }
     }
@@ -42,7 +47,7 @@ const lfGen = 7;
 const treeSettings = new Map();
 
 function create_random_tree() {
-    let a = { 
+    let a = {
         lt: random(0.3, 1), //taille maximale of the tree
         mnSpt: random(0.5, 1), // amount of small branches (inverted)
         thk: random(1, 7), // thickness of the trunk
@@ -59,7 +64,7 @@ function create_random_tree() {
         sMidMx: randomInt(1, 10), // number of branches at the trunk
         lfSteps: randomInt(1, 5), // nombre d'etapes dans les feuilles
         colorBase: new Color(random(0, 256), random(0, 256), random(0, 256)),
-        colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256)), 
+        colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256)),
     };
     console.log(a);
     return a;
@@ -78,30 +83,27 @@ function copulate(set1, set2) {
 
     let mutation = 0.05;
 
-    lt = (random(0,1) > mutation) ? set1.lt : random(0.3, 1);
-    mnSpt = (random(0,1) > mutation) ? set1.mnSpt :  random(0.5, 1);
-    thk = (random(0,1) > mutation) ? set1.thk : random(1, 7);
-    gtInitial = (random(0,1) > mutation) ? set1.gtInitial : set2.gtInitial;
-    gtPerGen = (random(0,1) > mutation) ? set1.gtPerGen : set2.gtPerGen;
-    warping = (random(0,1) > mutation) ? set1.warping : random(0, 10);
-    angDif = (random(0,1) > mutation) ? set1.angDif : random(0.5, 2);
-    sEndMx = (random(0,1) > mutation) ? set1.sEndMx : randomInt(2, 7);
-    sMidMx = (random(0,1) > mutation) ? set1.sMidMx : randomInt(1, 10);
-    colorBase = (random(0,1) > mutation) ? set1.colorBase : new Color(random(0, 256), random(0, 256), random(0, 256));
-    colorLeaves = (random(0,1) > mutation) ? set2.colorLeaves : new Color(random(0, 256), random(0, 256), random(0, 256));
-    lfGeno = (random(0,1) > mutation) ? set2.lfGen : randomInt(2, 6);
-    lfAmount = (random(0,1) > mutation) ? set2.lfAmount : randomInt(1, 7);
-    lfLength = (random(0,1) > mutation) ? set2.lfLength : random(0, 2);
-    lfGravity = (random(0,1) > mutation) ? set2.lfGravity : random(-3, 3);
-    lfThickness = (random(0,1) > mutation) ? set2.lfThickness : random(0, 6);
-    lfSteps = (random(0,1) > mutation) ? set2.lfSteps : randomInt(1, 5);
-
-
+    lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
+    mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
+    thk = (random(0, 1) > mutation) ? set1.thk : random(1, 7);
+    gtInitial = (random(0, 1) > mutation) ? set1.gtInitial : set2.gtInitial;
+    gtPerGen = (random(0, 1) > mutation) ? set1.gtPerGen : set2.gtPerGen;
+    warping = (random(0, 1) > mutation) ? set1.warping : random(0, 10);
+    angDif = (random(0, 1) > mutation) ? set1.angDif : random(0.5, 2);
+    sEndMx = (random(0, 1) > mutation) ? set1.sEndMx : randomInt(2, 7);
+    sMidMx = (random(0, 1) > mutation) ? set1.sMidMx : randomInt(1, 10);
+    colorBase = (random(0, 1) > mutation) ? set1.colorBase : new Color(random(0, 256), random(0, 256), random(0, 256));
+    colorLeaves = (random(0, 1) > mutation) ? set2.colorLeaves : new Color(random(0, 256), random(0, 256), random(0, 256));
+    lfGeno = (random(0, 1) > mutation) ? set2.lfGen : randomInt(2, 6);
+    lfAmount = (random(0, 1) > mutation) ? set2.lfAmount : randomInt(1, 7);
+    lfLength = (random(0, 1) > mutation) ? set2.lfLength : random(0, 2);
+    lfGravity = (random(0, 1) > mutation) ? set2.lfGravity : random(-3, 3);
+    lfThickness = (random(0, 1) > mutation) ? set2.lfThickness : random(0, 6);
+    lfSteps = (random(0, 1) > mutation) ? set2.lfSteps : randomInt(1, 5);
 
     return {
         // general
-        lt: lt, 
-
+        lt: lt,
         // tronc et branche  --> set1
         mnSpt: mnSpt,
         thk: thk,
@@ -112,8 +114,6 @@ function copulate(set1, set2) {
         sEndMx: sEndMx,
         sMidMx: sMidMx,
         colorBase: colorBase,
-
-
         // feuilles --> set2
         lfGen: lfGeno,
         lfAmount: lfAmount,
@@ -125,9 +125,6 @@ function copulate(set1, set2) {
     };
 
 }
-
-
-
 
 class Planter {
     speed = 100;
@@ -243,7 +240,6 @@ class Particle {
         }
         if (this.fx >= dim.x) this.fx = dim.x - 1;
         if (this.fy >= dim.y) this.fy = dim.y - 1;
-
         if (this.fx < 0) this.fx = 0;
         if (this.fy < 0) this.fy = 0;
         pctx.fillStyle = this.color;
@@ -259,7 +255,6 @@ class Particle {
 }
 Particle.list = [];
 let a = true;
-
 let set1 = create_random_tree();
 let set2 = create_random_tree();
 
@@ -269,39 +264,31 @@ function generate() {
         a = false;
     }
 
-
-
-   // document.getElementById("bg").style.filter = `hue-rotate(${set.hr}deg)`; // gradient background
+    // document.getElementById("bg").style.filter = `hue-rotate(${set.hr}deg)`; // gradient background
     document.getElementById("bg").style.background = 'black';
     ctx.clearRect(0, 0, dim.x, dim.y);
     Planter.list = [];
     new Planter(dim.x / 4, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set2)
-    new Planter((dim.x / 4) *3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
-
+    new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
 
 }
-
 
 function jsondump() {
     let tree = document.getElementById("which").value;
 
-    if(tree) {
-        let set = (eval("set" + tree) );
+    if (tree) {
+        let set = (eval("set" + tree));
         treeSettings.set(tree, set);
     }
 
 
     let myObj = Object.fromEntries(treeSettings);
     JSONToFile(myObj, "Trees.json");
-
-
 }
-
-
 
 const JSONToFile = (obj, filename) => {
     const blob = new Blob([JSON.stringify(obj, null, 2)], {
-      type: 'application/json',
+        type: 'application/json',
     });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -309,12 +296,17 @@ const JSONToFile = (obj, filename) => {
     a.download = `${filename}.json`;
     a.click();
     URL.revokeObjectURL(url);
-  };
+};
 
-
-function jsonload() {
+function jsonloadR() {
     let tree = document.getElementById("which").value;
     set1 = treeSettings.get(tree);
+    generate();
+}
+
+function jsonloadL() {
+    let tree = document.getElementById("which").value;
+    set2 = treeSettings.get(tree);
     generate();
 }
 
@@ -324,34 +316,22 @@ function renew() {
     reset(tree);
 }
 
-
 function reset(n) {
     console.log(n);
-
-    if(n == '1') {
+    if (n == '1') {
         set1 = create_random_tree();
     }
     else if (n == '2') {
         set2 = create_random_tree();
     }
-    else  {
-        set1 =  create_random_tree();
+    else {
+        set1 = create_random_tree();
         set2 = create_random_tree();
     }
-
-   
-
     generate()
 }
 
-
-
-
-
 console.log(jsonData);
-
-
-
 let pixelData = Array.from(Array(dim.x), () => new Array(dim.y))
 for (let x = 0; x < dim.x; x++) {
     for (let y = 0; y < dim.y; y++) {
@@ -359,7 +339,6 @@ for (let x = 0; x < dim.x; x++) {
     }
 }
 pixelData[Math.floor(dim.x / 2)][Math.floor(dim.y / 2)].newValue = 254;
-
 let newTime = Date.now();
 let oldTime = Date.now();
 window.requestAnimationFrame(update);

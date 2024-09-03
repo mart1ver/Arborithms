@@ -12,16 +12,14 @@
 
 <body>
     <div id="buttons">
-
-
-    <input id="which"></input>
-    <button id="renew" width="400px" onclick="renew()">renew</button>
-    <button id="generate" width="400px" onclick="generate()">generate</button>
+    <input id="which" list="varieties">
+    <button id="newplant" width="400px" onclick="jsonloadL()">load to left</button>
+    <button id="newplant" width="400px" onclick="jsonloadR()">load to right</button>
+    <button id="renew" width="400px" onclick="renew()">randomise parents</button>
+    <button id="generate" width="400px" onclick="generate()">regrow parents</button>
     <button id="copulate" width="400px" onclick="copulate12()">copulate</button>
     <button id="jsondump" width="400px" onclick="jsondump()">json dump</button>
-    <button id="newplant" width="400px" onclick="jsonload()">json load</button>
     </div>
-
     <div id="bg">    
     </div>
     <canvas class="canvas" id="canvas"></canvas>
@@ -29,10 +27,6 @@
     <script src="color.js"></script>
     <script src="canvas.js"></script>
     <h1 id="titleText">Lets grow trees !</h1>
-
-
-
-
 </body>
 
 </html>
