@@ -264,8 +264,8 @@ function generate() {
         a = false;
     }
 
-    // document.getElementById("bg").style.filter = `hue-rotate(${set.hr}deg)`; // gradient background
-    document.getElementById("bg").style.background = 'black';
+    //document.getElementById("bg").style.filter = `hue-rotate(${set.hr}deg)`; // gradient background
+    //document.getElementById("bg").style.background = 'black';
     ctx.clearRect(0, 0, dim.x, dim.y);
     Planter.list = [];
     new Planter(dim.x / 4, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set2)
@@ -310,11 +310,7 @@ function jsonloadL() {
     generate();
 }
 
-function renew() {
-    let tree = document.getElementById("which").value;
-    console.log("value == " + tree);
-    reset(tree);
-}
+
 
 function reset(n) {
     console.log(n);
