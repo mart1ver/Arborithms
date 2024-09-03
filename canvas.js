@@ -1,4 +1,3 @@
-
 var jsonData;
 
 fetch("Trees.json").then(response => response.json()).then(data => {
@@ -29,25 +28,21 @@ const pctx = pcanvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 pctx.imageSmoothingEnabled = false;
 let dim = { x: 3440, y: 1440 };
-//let dim = { x: 1024, y: 432 };
+
 let scaleRatioY = window.innerHeight / 100
-let scaleRatioX = window.innerWidth / 1000
+let scaleRatioX = window.innerWidth / 2000
 let scaleRatio = Math.min(scaleRatioX, scaleRatioY);
 dim = { x: Math.floor(window.innerWidth / scaleRatio), y: Math.floor(window.innerHeight / scaleRatio) }
-//const dim = { x: 3440, y: 1440 };
+
 canvas.width = dim.x;
 canvas.height = dim.y;
 pcanvas.width = dim.x;
 pcanvas.height = dim.y;
-
 const imageData = ctx.createImageData(dim.x, dim.y);
-
 let growStepSize = 0.01;
 let deltaTime = 0.001;
-
 const lfGen = 7;
 const treeSettings = new Map();
-
 
 function create_random_tree() {
     let a = { 
@@ -136,252 +131,6 @@ function copulate(set1, set2) {
 
 
 
-
-treeSettings.set("A", {
-   
-    lt: random(0.5, 2.5), // life time
-    mnSpT: random(0.4, 1), // inverse amount of leaves
-    thk: random(2, 7), // thickness of the trunk
-    gtInitial: random(0, .8), // dont know
-    warping: random(0, 20), // recroquevitude du tronc
-    lfGen: random(1, 6), // nombres de splits avant les feuilles
-    gtPerGen: random(-3, 3), // "souplesse des branches"
-    angDif: random(0.8, 1.3), // inclinaison possible des branches
-    lfAmount: random(1, 8), // amount of leaves
-    lfLength: random(0.1, 1.5), // length of leaves
-    lfGravity: random(-4, 4), // gravity of the leaves
-    lfThickness: random(0.1, 6), // thickness of leaves
-    sEndMx: randomInt(1, 7), // number of mini-branches at the end of the split
-    sMidMx: randomInt(1, 14), // number of branches at the trunk
-    skipGenMax: random(0, 2), // skip things on the way
-    lfSteps: random(1, 4), // split des feuilles
-    colorBase: new Color(random(10, 35), random(10, 45), random(10, 45)),
-    colorLeaves: new Color(random(0, 100), random(60, 255), random(0, 100))
-});
-
-
-
-treeSettings.set("Oak", {
-    lt: 0.7, // life time
-    mnSpT: 0.77, // inverse amount of small branches divisions
-    thk: 6, // thickness of the trunk
-    gtInitial: 0.3, // dont know
-    gtPerGen: 0.35, // dont know
-    warping: 6.1, // recroquevitude du tronc
-    lfGen: 5, // nombres de splits avant les feuilles
-    angDif: 1.3, // inclinaison possible des branches
-    lfAmount: 7, // amount of leaves
-    lfLength: 1.8, // length of leaves
-    lfGravity: -4, // gravity of the leaves
-    lfThickness:2.48, // thickness of leaves
-    sEndMx: 2, // number of mini-branches at the end of the split
-    sMidMx: 4, // number of branches at the trunk
-    skipGenMax: 0, // skip things on the way
-    lfSteps: 2, // split des feuilles
-    colorBase: new Color(155, 145, 35),
-    colorLeaves: new Color(60, 9, 40)
-});
-
-
-treeSettings.set("Oak-baby", {
-    hr:30000, // dont know
-    lt: .1, // life time
-    mnSpT: .7, // inverse amount of leaves
-    thk: 2, // thickness of the trunk
-    gtInitial: .9, // dont know
-    warping: 5, // recroquevitude du tronc
-    lfGen: 7, // nombres de splits avant les feuilles
-    gtPerGen: .1, // dont know
-    angDif: 1.3, // inclinaison possible des branches
-    lfAmount: 3, // amount of leaves
-    lfLength: .9, // length of leaves
-    lfGravity: 10, // gravity of the leaves
-    lfThickness: 4, // thickness of leaves
-    sEndMx: 3, // number of mini-branches at the end of the split
-    sMidMx: 10, // number of branches at the trunk
-    skipGenMax: 0, // skip things on the way
-    lfSteps: 3, // split des feuilles
-    colorBase: new Color(155, 145, 35),
-    colorLeaves: new Color(122, 56, 12)
-});
-
-treeSettings.set("Oak4", {
-    hr:30000, // dont know
-    lt: .8, // life time
-    mnSpT: .8, // inverse amount of leaves
-    thk: 2, // thickness of the trunk
-    gtInitial: .9, // dont know
-    warping: 7, // recroquevitude du tronc
-    lfGen: 7, // nombres de splits avant les feuilles
-    gtPerGen: .1, // dont know
-    angDif: 1.8, // inclinaison possible des branches
-    lfAmount: 3, // amount of leaves
-    lfLength: .9, // length of leaves
-    lfGravity: 6, // gravity of the leaves
-    lfThickness: 3, // thickness of leaves
-    sEndMx: 3, // number of mini-branches at the end of the split
-    sMidMx: 7, // number of branches at the trunk
-    skipGenMax: 0, // skip things on the way
-    lfSteps: 3, // split des feuilles
-    colorBase: new Color(45, 67, 45),
-    colorLeaves: new Color(122, 56, 123)
-});
-
-
-
-
-treeSettings.set("Oak4", {
-    hr:30000, // dont know
-    lt: .8, // life time
-    mnSpT: .8, // inverse amount of leaves
-    thk: 2, // thickness of the trunk
-    gtInitial: .9, // dont know
-    warping: 7, // recroquevitude du tronc
-    lfGen: 7, // nombres de splits avant les feuilles
-    gtPerGen: .1, // dont know
-    angDif: 1.8, // inclinaison possible des branches
-    lfAmount: 3, // amount of leaves
-    lfLength: .9, // length of leaves
-    lfGravity: 6, // gravity of the leaves
-    lfThickness: 3, // thickness of leaves
-    sEndMx: 3, // number of mini-branches at the end of the split
-    sMidMx: 7, // number of branches at the trunk
-    skipGenMax: 0, // skip things on the way
-    lfSteps: 3, // split des feuilles
-    colorBase: new Color(45, 67, 45),
-    colorLeaves: new Color(122, 56, 123)
-});
-
-
-treeSettings.set("Oak3", {
-    hr:30000, // dont know
-    lt: .8, // life time
-    mnSpT: .5, // inverse amount of leaves
-    thk: 6, // thickness of the trunk
-    gtInitial: .9, // dont know
-    warping: 3, // recroquevitude du tronc
-    lfGen: 6, // nombres de splits avant les feuilles
-    gtPerGen: .1, // dont know
-    angDif: 1.5, // inclinaison possible des branches
-    lfAmount: 4, // amount of leaves
-    lfLength: .4, // length of leaves
-    lfGravity: -6, // gravity of the leaves
-    lfThickness: 7, // thickness of leaves
-    sEndMx: 5, // number of mini-branches at the end of the split
-    sMidMx: 7, // number of branches at the trunk
-    skipGenMax: 0, // skip things on the way
-    lfSteps: 3, // split des feuilles
-    colorBase: new Color(142, 134, 200),
-    colorLeaves: new Color(60, 139, 40)
-});
-
-
-
-
-treeSettings.set("Oak2", {
-    hr:110,
-    lt: .7,
-    mnSpT: .3,
-    thk: 4,
-    gtInitial: .3,
-    warping: 5,
-    lfGen: 4,
-    gtPerGen: .35,
-    angDif: 1.3,
-    lfAmount: 4,
-    lfLength: .3,
-    lfGravity: 0,
-    lfThickness: 4,
-    sEndMx: 5,
-    sMidMx: 4,
-    skipGenMax: 0,
-    lfSteps: 2,
-    colorBase: new Color(55, 45, 35),
-    colorLeaves: new Color(60, 110, 40)
-});
-treeSettings.set("Sakura", {
-    hr:320,
-    lt: .5,
-    mnSpT: .8,
-    thk: 6,
-    gtInitial: 3,
-    warping: 40,
-    lfGen: 12,
-    gtPerGen: 1,
-    angDif: 1,
-    lfAmount: 5,
-    lfLength: .8,
-    lfGravity: 0,
-    lfThickness: 4,
-    sEndMx: 2,
-    sMidMx: 2,
-    lfSteps: 1,
-    colorBase: new Color(50, 30, 30),
-    colorLeaves: new Color(220, 140, 150)
-});
-treeSettings.set("Palm", {
-    hr:40,
-    lt: 1.1,
-    mnSpT: 2,
-    thk: 3,
-    gtInitial: -.5,
-    warping: 3,
-    lfGen: 1,
-    gtPerGen: .5,
-    angDif: 0,
-    lfAmount: 10,
-    lfLength: .3,
-    lfGravity: -7,
-    lfThickness: 4,
-    sEndMx: 1,
-    sMidMx: 1,
-    skipGenMax: 0,
-    lfSteps: 3,
-    colorBase: new Color(60, 30, 25),
-    colorLeaves: new Color(80, 130, 30)
-});
-treeSettings.set("OakWinter", {
-    hr:180,
-    lt: .7,
-    mnSpT: .3,
-    thk: 4,
-    gtInitial: .3,
-    warping: 20,
-    lfGen: 5,
-    gtPerGen: .1,
-    angDif: 1.4,
-    lfAmount: 1,
-    lfLength: .5,
-    lfGravity: 0,
-    lfThickness: 4,
-    sEndMx: 4,
-    sMidMx: 3,
-    skipGenMax: 1,
-    lfSteps: 2,
-    colorBase: new Color(80, 110, 125),
-    colorLeaves: new Color(185, 190, 200),
-});
-treeSettings.set("Birch", {
-    hr:80,
-    lt: .7,
-    mnSpT: .6,
-    thk: 3,
-    gtInitial: .5,
-    warping: 3,
-    lfGen: 6,
-    gtPerGen: .35,
-    angDif: .9,
-    lfAmount: 3,
-    lfLength: 2,
-    lfGravity: -30,
-    lfThickness: 2,
-    sEndMx: 4,
-    sMidMx: 6,
-    skipGenMax: 0,
-    lfSteps: 0,
-    colorBase: new Color(180, 170, 160),
-    colorLeaves: new Color(90, 120, 40),
-});
 
 class Planter {
     speed = 100;
@@ -522,16 +271,7 @@ function generate() {
         document.getElementById("titleText").style.opacity = "0";
         a = false;
     }
-    //let set = Array.from(treeSettings.values())[randomInt(0, treeSettings.size - 1)]; // pick random tree
-   // let set1 = Array.from(treeSettings.values())[randomInt(0, 0)]; // always pick the first tree of the set
-   // let set2 = Array.from(treeSettings.values())[randomInt(1, 1)]; // always pick the first tree of the set
 
-    // treeSettings.set("Oak", { ...});
-//    let set1 = treeSettings.get("Carrot");
-//    console.log(set1);
-
-    // set1 = create_random_tree();
-    // set2 = create_random_tree();
 
 
    // document.getElementById("bg").style.filter = `hue-rotate(${set.hr}deg)`; // gradient background
@@ -557,19 +297,6 @@ function jsondump() {
     let myObj = Object.fromEntries(treeSettings);
     JSONToFile(myObj, "Trees.json");
 
-    // const jsonStr = JSON.stringify(set, null, 2);
-    // const filePath = path.join(process.cwd(), 'test.json');
-    // fs.writeFile(filePath, jsonStr, (err) => {
-    //     if(err) { console.error(err); }
-    //     else { console.log("file written"); }
-    // });
-    //console.log("LALLALA");
-
-// var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(set));
-// var dlAnchorElem = document.getElementById('downloadAnchorElem');
-// dlAnchorElem.setAttribute("href",     dataStr     );
-// dlAnchorElem.setAttribute("download", "scene.json");
-// dlAnchorElem.click();
 
 }
 
@@ -615,14 +342,11 @@ function reset(n) {
         set2 = create_random_tree();
     }
 
-    // if(n == '0') {
-    //    copulate12();
-    // }
+   
 
     generate()
 }
 
-// addEventListener("keypress", (event) => reset(event));
 
 
 
