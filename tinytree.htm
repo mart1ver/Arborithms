@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+   
+    <title>Tiny Trees Copulator</title>
+</head>
+
+<body>
+    <div id="buttons">
+
+
+    <input id="which"></input>
+    <button id="renew" width="400px" onclick="renew()">renew</button>
+    <button id="generate" width="400px" onclick="generate()">generate</button>
+    <button id="copulate" width="400px" onclick="copulate12()">copulate</button>
+    <button id="jsondump" width="400px" onclick="jsondump()">json dump</button>
+    <button id="newplant" width="400px" onclick="jsonload()">json load</button>
+    </div>
+
+    <div id="bg">    
+    </div>
+    <canvas class="canvas" id="canvas"></canvas>
+    <canvas class="canvas" id="particleCanvas" ></canvas>
+    <script src="color.js"></script>
+    <script src="canvas.js"></script>
+    <h1 id="titleText">Lets grow trees!</h1>
+
+
+
+</body>
+
+</html>

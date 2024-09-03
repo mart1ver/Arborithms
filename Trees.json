@@ -1,0 +1,338 @@
+{
+  "2": {
+    "lt": 0.9196576637580169,
+    "mnSpt": 0.9348868727385686,
+    "thk": 2.891926933639664,
+    "gtInitial": 0.3,
+    "gtPerGen": 0.35,
+    "warping": 9.769684616681158,
+    "lfGen": 5,
+    "angDif": 1.1824764882175158,
+    "lfAmount": 1,
+    "lfLength": 1.0303671181365175,
+    "lfGravity": 1.797478672397114,
+    "lfThickness": 5.396646495192117,
+    "sEndMx": 6,
+    "sMidMx": 10,
+    "lfSteps": 4,
+    "colorBase": {
+      "r": 126.90262378747684,
+      "g": 85.02638342447045,
+      "b": 103.36210021258046,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 150.2852673621054,
+      "g": 30.213560001645646,
+      "b": 11.463333491915648,
+      "a": 255
+    }
+  },
+  "A": {
+    "lt": 2.091197964932629,
+    "mnSpT": 0.4294284470512943,
+    "thk": 6.26424987022995,
+    "gtInitial": 0.660112478546571,
+    "warping": 6.260169383944572,
+    "lfGen": 3.241628733099814,
+    "gtPerGen": -1.7967202168885552,
+    "angDif": 1.0088318568406653,
+    "lfAmount": 6.81411383846739,
+    "lfLength": 0.5508797993635888,
+    "lfGravity": 0.9574843363481893,
+    "lfThickness": 3.204031934373865,
+    "sEndMx": 2,
+    "sMidMx": 7,
+    "skipGenMax": 0.962789805841072,
+    "lfSteps": 3.599821147578192,
+    "colorBase": {
+      "r": 17.78907808887891,
+      "g": 38.84533332227517,
+      "b": 17.459427532686526,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 78.73411392712464,
+      "g": 244.61012305932272,
+      "b": 58.04314237396737,
+      "a": 255
+    }
+  },
+  "Oak": {
+    "lt": 0.7,
+    "mnSpT": 0.77,
+    "thk": 6,
+    "gtInitial": 0.3,
+    "gtPerGen": 0.35,
+    "warping": 6.1,
+    "lfGen": 5,
+    "angDif": 1.3,
+    "lfAmount": 7,
+    "lfLength": 1.8,
+    "lfGravity": -4,
+    "lfThickness": 2.48,
+    "sEndMx": 2,
+    "sMidMx": 4,
+    "skipGenMax": 0,
+    "lfSteps": 2,
+    "colorBase": {
+      "r": 155,
+      "g": 145,
+      "b": 35,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 60,
+      "g": 9,
+      "b": 40,
+      "a": 255
+    }
+  },
+  "Oak-baby": {
+    "hr": 30000,
+    "lt": 0.1,
+    "mnSpT": 0.7,
+    "thk": 2,
+    "gtInitial": 0.9,
+    "warping": 5,
+    "lfGen": 7,
+    "gtPerGen": 0.1,
+    "angDif": 1.3,
+    "lfAmount": 3,
+    "lfLength": 0.9,
+    "lfGravity": 10,
+    "lfThickness": 4,
+    "sEndMx": 3,
+    "sMidMx": 10,
+    "skipGenMax": 0,
+    "lfSteps": 3,
+    "colorBase": {
+      "r": 155,
+      "g": 145,
+      "b": 35,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 122,
+      "g": 56,
+      "b": 12,
+      "a": 255
+    }
+  },
+  "Oak4": {
+    "hr": 30000,
+    "lt": 0.8,
+    "mnSpT": 0.8,
+    "thk": 2,
+    "gtInitial": 0.9,
+    "warping": 7,
+    "lfGen": 7,
+    "gtPerGen": 0.1,
+    "angDif": 1.8,
+    "lfAmount": 3,
+    "lfLength": 0.9,
+    "lfGravity": 6,
+    "lfThickness": 3,
+    "sEndMx": 3,
+    "sMidMx": 7,
+    "skipGenMax": 0,
+    "lfSteps": 3,
+    "colorBase": {
+      "r": 45,
+      "g": 67,
+      "b": 45,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 122,
+      "g": 56,
+      "b": 123,
+      "a": 255
+    }
+  },
+  "Oak3": {
+    "hr": 30000,
+    "lt": 0.8,
+    "mnSpT": 0.5,
+    "thk": 6,
+    "gtInitial": 0.9,
+    "warping": 3,
+    "lfGen": 6,
+    "gtPerGen": 0.1,
+    "angDif": 1.5,
+    "lfAmount": 4,
+    "lfLength": 0.4,
+    "lfGravity": -6,
+    "lfThickness": 7,
+    "sEndMx": 5,
+    "sMidMx": 7,
+    "skipGenMax": 0,
+    "lfSteps": 3,
+    "colorBase": {
+      "r": 142,
+      "g": 134,
+      "b": 200,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 60,
+      "g": 139,
+      "b": 40,
+      "a": 255
+    }
+  },
+  "Oak2": {
+    "hr": 110,
+    "lt": 0.7,
+    "mnSpT": 0.3,
+    "thk": 4,
+    "gtInitial": 0.3,
+    "warping": 5,
+    "lfGen": 4,
+    "gtPerGen": 0.35,
+    "angDif": 1.3,
+    "lfAmount": 4,
+    "lfLength": 0.3,
+    "lfGravity": 0,
+    "lfThickness": 4,
+    "sEndMx": 5,
+    "sMidMx": 4,
+    "skipGenMax": 0,
+    "lfSteps": 2,
+    "colorBase": {
+      "r": 55,
+      "g": 45,
+      "b": 35,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 60,
+      "g": 110,
+      "b": 40,
+      "a": 255
+    }
+  },
+  "Sakura": {
+    "hr": 320,
+    "lt": 0.5,
+    "mnSpT": 0.8,
+    "thk": 6,
+    "gtInitial": 3,
+    "warping": 40,
+    "lfGen": 12,
+    "gtPerGen": 1,
+    "angDif": 1,
+    "lfAmount": 5,
+    "lfLength": 0.8,
+    "lfGravity": 0,
+    "lfThickness": 4,
+    "sEndMx": 2,
+    "sMidMx": 2,
+    "lfSteps": 1,
+    "colorBase": {
+      "r": 50,
+      "g": 30,
+      "b": 30,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 220,
+      "g": 140,
+      "b": 150,
+      "a": 255
+    }
+  },
+  "Palm": {
+    "hr": 40,
+    "lt": 1.1,
+    "mnSpT": 2,
+    "thk": 3,
+    "gtInitial": -0.5,
+    "warping": 3,
+    "lfGen": 1,
+    "gtPerGen": 0.5,
+    "angDif": 0,
+    "lfAmount": 10,
+    "lfLength": 0.3,
+    "lfGravity": -7,
+    "lfThickness": 4,
+    "sEndMx": 1,
+    "sMidMx": 1,
+    "skipGenMax": 0,
+    "lfSteps": 3,
+    "colorBase": {
+      "r": 60,
+      "g": 30,
+      "b": 25,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 80,
+      "g": 130,
+      "b": 30,
+      "a": 255
+    }
+  },
+  "OakWinter": {
+    "hr": 180,
+    "lt": 0.7,
+    "mnSpT": 0.3,
+    "thk": 4,
+    "gtInitial": 0.3,
+    "warping": 20,
+    "lfGen": 5,
+    "gtPerGen": 0.1,
+    "angDif": 1.4,
+    "lfAmount": 1,
+    "lfLength": 0.5,
+    "lfGravity": 0,
+    "lfThickness": 4,
+    "sEndMx": 4,
+    "sMidMx": 3,
+    "skipGenMax": 1,
+    "lfSteps": 2,
+    "colorBase": {
+      "r": 80,
+      "g": 110,
+      "b": 125,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 185,
+      "g": 190,
+      "b": 200,
+      "a": 255
+    }
+  },
+  "Birch": {
+    "hr": 80,
+    "lt": 0.7,
+    "mnSpT": 0.6,
+    "thk": 3,
+    "gtInitial": 0.5,
+    "warping": 3,
+    "lfGen": 6,
+    "gtPerGen": 0.35,
+    "angDif": 0.9,
+    "lfAmount": 3,
+    "lfLength": 2,
+    "lfGravity": -30,
+    "lfThickness": 2,
+    "sEndMx": 4,
+    "sMidMx": 6,
+    "skipGenMax": 0,
+    "lfSteps": 0,
+    "colorBase": {
+      "r": 180,
+      "g": 170,
+      "b": 160,
+      "a": 255
+    },
+    "colorLeaves": {
+      "r": 90,
+      "g": 120,
+      "b": 40,
+      "a": 255
+    }
+  }
+}
