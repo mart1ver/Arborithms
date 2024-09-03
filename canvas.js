@@ -16,7 +16,6 @@ fetch("Trees.json").then(response => response.json()).then(data => {
     }
 })
 
-
 performance.mark("10");
 /** 
  * @type {HTMLCanvasElement}
@@ -28,12 +27,10 @@ const pctx = pcanvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 pctx.imageSmoothingEnabled = false;
 let dim = { x: 3440, y: 1440 };
-
 let scaleRatioY = window.innerHeight / 100
 let scaleRatioX = window.innerWidth / 2000
 let scaleRatio = Math.min(scaleRatioX, scaleRatioY);
 dim = { x: Math.floor(window.innerWidth / scaleRatio), y: Math.floor(window.innerHeight / scaleRatio) }
-
 canvas.width = dim.x;
 canvas.height = dim.y;
 pcanvas.width = dim.x;
