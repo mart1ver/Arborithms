@@ -298,24 +298,14 @@ const JSONToFile = (obj, filename) => {
 
 
 function jsonload(n) {
-
-
-
     let tree = document.getElementById("which").value;
-
-
     if (n == '1') {
-       
         set1 = treeSettings.get(tree);
     }
     if (n == '2') {
-    
         set2 = treeSettings.get(tree);
     }
-
-
     generate();
-
 }
 
 
