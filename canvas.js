@@ -295,35 +295,29 @@ const JSONToFile = (obj, filename) => {
     URL.revokeObjectURL(url);
 };
 
-function jsonloadR() {
-    let tree = document.getElementById("which").value;
-    set1 = treeSettings.get(tree);
-    generate();
-}
-
-function jsonloadL() {
-    let tree = document.getElementById("which").value;
-    set2 = treeSettings.get(tree);
-    generate();
-}
-
-
-
 
 
 function jsonload(n) {
-    // console.log(n);
+
+
+
+    let tree = document.getElementById("which").value;
+
+
     if (n == '1') {
-        let tree = document.getElementById("which").value;
+       
         set1 = treeSettings.get(tree);
     }
-    else if (n == '2') {
-        let tree = document.getElementById("which").value;
+    if (n == '2') {
+    
         set2 = treeSettings.get(tree);
     }
 
-    generate()
+
+    generate();
+
 }
+
 
 
 
