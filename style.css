@@ -54,9 +54,3 @@ body {
     top:0; left:0;
     z-index: 7;
 }
-
-#buttons2 {
-    position: absolute;
-    top: 60px; right:0;
-    z-index: 7;
-}
