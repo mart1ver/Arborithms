@@ -13,8 +13,8 @@
 <body>
     <div id="buttons">
     <input id="which" list="varieties">
-    <button id="newplant" width="400px" onclick="jsonloadL()">load left</button>
-    <button id="newplant" width="400px" onclick="jsonloadR()">load right</button>
+    <button id="newplant" width="400px" onclick="jsonload(2)">load left</button>
+    <button id="newplant" width="400px" onclick="jsonload(1)">load right</button>
     <button id="renew" width="400px" onclick="reset(2)">rnd left</button>
     <button id="renew" width="400px" onclick="reset(1)">rnd right</button>
     <button id="generate" width="400px" onclick="generate()">regrow parents</button>
@@ -22,11 +22,7 @@
     <button id="jsondump" width="400px" onclick="jsondump()">json dump</button>
     </div>
 <br>
-    <div id="buttons2">
-   
-        <button id="tref" width="400px" onclick="reset(2)">rnd left</button>
-     
-        </div>
+
         
     <div id="bg">    
     </div>

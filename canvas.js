@@ -53,25 +53,25 @@ function create_random_tree() {
         thk: random(1, 7), // thickness of the trunk
         gtInitial: 0.3, // gravity initial
         gtPerGen: 0.35, // gravité exercés sur les branches
-        warping: random(0, 10),
+        warping: random(0, 10), //recrovitude du tronc
         lfGen: randomInt(2, 6), // number of splits before leaves
         angDif: random(0.5, 2), // inclinaison possible des branches
         lfAmount: randomInt(1, 7), // nombre de feuilles
         lfLength: random(0, 2), // length of leaves
         lfGravity: random(-3, 3), // gravity of leaves
-        lfThickness: random(0, 6),
+        lfThickness: random(0, 6), //largeur des feuilles
         sEndMx: randomInt(2, 7), // number of mini-branches at the end of the split
         sMidMx: randomInt(1, 10), // number of branches at the trunk
         lfSteps: randomInt(1, 5), // nombre d'etapes dans les feuilles
         colorBase: new Color(random(0, 256), random(0, 256), random(0, 256)),
         colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256)),
     };
-    console.log(a);
+    //console.log(a);
     return a;
 }
 
 function copulate12() {
-    console.log("REPRODUCTION");
+    //console.log("REPRODUCTION");
     old1 = set1; old2 = set2;
     set1 = copulate(old1, old2);
     set2 = copulate(old2, old1);
@@ -309,8 +309,28 @@ function jsonloadL() {
 
 
 
+
+
+function jsonload(n) {
+    // console.log(n);
+    if (n == '1') {
+        let tree = document.getElementById("which").value;
+        set1 = treeSettings.get(tree);
+    }
+    else if (n == '2') {
+        let tree = document.getElementById("which").value;
+        set2 = treeSettings.get(tree);
+    }
+
+    generate()
+}
+
+
+
+
+
 function reset(n) {
-    console.log(n);
+    // console.log(n);
     if (n == '1') {
         set1 = create_random_tree();
     }
@@ -324,7 +344,7 @@ function reset(n) {
     generate()
 }
 
-console.log(jsonData);
+//console.log(jsonData);
 let pixelData = Array.from(Array(dim.x), () => new Array(dim.y))
 for (let x = 0; x < dim.x; x++) {
     for (let y = 0; y < dim.y; y++) {
@@ -346,7 +366,7 @@ function update() {
     window.requestAnimationFrame(update);
 }
 
-let planterStepsPerUpdate = 1;
+let planterStepsPerUpdate = 4;
 let planterStepsElapsed = 0;
 
 function planterUpdate() {
