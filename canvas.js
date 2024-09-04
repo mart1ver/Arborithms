@@ -297,7 +297,7 @@ const JSONToFile = (obj, filename) => {
 
 
 
-function jsonload(n) {
+function loadIn(n) {
     let tree = document.getElementById("which").value;
     if (n == '1') {
         set1 = treeSettings.get(tree);
