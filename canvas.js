@@ -82,7 +82,6 @@ function copulate12() {
 function copulate(set1, set2) {
 
     let mutation = 0.05;
-
     lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
     mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
     thk = (random(0, 1) > mutation) ? set1.thk : random(1, 7);
@@ -131,7 +130,6 @@ class Planter {
     age = 0;
     gen = 1;
     enabled = true;
-
     constructor(x, y, angle = random(0, Math.PI * 2), stgs = treeSettings.values().next()) {
         this.fx = x;
         this.fy = y;
@@ -209,7 +207,6 @@ class Particle {
     age = 0;
     drag = 2;
     enabled = true;
-
     constructor(x, y, angle = random(0, Math.PI * 2)) {
         this.fx = x;
         this.fy = y;
@@ -257,6 +254,7 @@ Particle.list = [];
 let a = true;
 let set1 = create_random_tree();
 let set2 = create_random_tree();
+let set3 = create_random_tree();
 
 function generate() {
     if (a) {
@@ -277,11 +275,8 @@ function generateChild() {
     }
     ctx.clearRect(0, 0, dim.x, dim.y);
     Planter.list = [];
-    new Planter(dim.x / 2, dim.y / 2, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set2)
+    new Planter(dim.x / 2, dim.y / 2, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set3)
 }
-
-
-
 
 function jsondump() {
     let tree = document.getElementById("which").value;
@@ -308,9 +303,7 @@ const JSONToFile = (obj, filename) => {
     URL.revokeObjectURL(url);
 };
 
-
-
-function loadIn(n) {
+function loadInParentSlot(n) {
     let tree = document.getElementById("which").value;
     if (n == '1') {
         set1 = treeSettings.get(tree);
