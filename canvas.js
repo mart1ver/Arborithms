@@ -79,11 +79,26 @@ function cross12() {
 }
 function copulate12() {
     //console.log("REPRODUCTION");
-   // old1 = set1; old2 = set2;
+    old1 = set1; old2 = set2;
+
     //set1 = crossParents(old1, old2);
     //set2 = crossParents(old2, old1);
-    generate();
+    set1 = crossParents(old1, old2);
+
+
+    generateChild()
+
+
 }
+
+
+
+
+
+
+
+
+
 function crossParents(set1, set2) {
 
     let mutation = 0.05;
@@ -283,7 +298,7 @@ function generateChild() {
     new Planter(dim.x / 2, dim.y * 0.8, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set3)
     new Planter(dim.x / 4, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set2)
     new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
-    
+
 }
 
 function jsondump() {
