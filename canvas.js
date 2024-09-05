@@ -270,6 +270,21 @@ function generate() {
 
 }
 
+function generateChild() {
+    if (a) {
+        document.getElementById("titleText").style.opacity = "0";
+        a = false;
+    }
+    ctx.clearRect(0, 0, dim.x, dim.y);
+    Planter.list = [];
+    new Planter(dim.x / 2, dim.y / 2, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set2)
+    //new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
+
+}
+
+
+
+
 function jsondump() {
     let tree = document.getElementById("which").value;
 
