@@ -71,13 +71,18 @@ function create_random_tree() {
 }
 
 function cross12() {
-    //console.log("REPRODUCTION");
+    //console.log("parent cross");
     old1 = set1; old2 = set2;
     set1 = crossParents(old1, old2);
     set2 = crossParents(old2, old1);
     generate();
 }
-
+function copulate12() {
+    //console.log("REPRODUCTION");
+   // old1 = set1; old2 = set2;
+    //set1 = crossParents(old1, old2);
+    //set2 = crossParents(old2, old1);
+    generate();
 
 function crossParents(set1, set2) {
 
