@@ -80,14 +80,55 @@ function cross12() {
 function copulate12() {
     //console.log("REPRODUCTION");
     old1 = set1; old2 = set2;
-
-    //set1 = crossParents(old1, old2);
-    //set2 = crossParents(old2, old1);
-    set1 = crossParents(old1, old2);
-
-
+    set3 = copulate(old1, old2);
     generateChild()
+}
 
+
+
+function copulate(set1, set2) {
+
+    let mutation = 0.05;
+    lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
+    mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
+    thk = (random(0, 1) > mutation) ? set1.thk : random(1, 7);
+    gtInitial = (random(0, 1) > mutation) ? set1.gtInitial : set2.gtInitial;
+    gtPerGen = (random(0, 1) > mutation) ? set1.gtPerGen : set2.gtPerGen;
+    warping = (random(0, 1) > mutation) ? set1.warping : random(0, 10);
+    angDif = (random(0, 1) > mutation) ? set1.angDif : random(0.5, 2);
+    sEndMx = (random(0, 1) > mutation) ? set1.sEndMx : randomInt(2, 7);
+    sMidMx = (random(0, 1) > mutation) ? set1.sMidMx : randomInt(1, 10);
+    colorBase = (random(0, 1) > mutation) ? set1.colorBase : new Color(random(0, 256), random(0, 256), random(0, 256));
+    colorLeaves = (random(0, 1) > mutation) ? set2.colorLeaves : new Color(random(0, 256), random(0, 256), random(0, 256));
+    lfGeno = (random(0, 1) > mutation) ? set2.lfGen : randomInt(2, 6);
+    lfAmount = (random(0, 1) > mutation) ? set2.lfAmount : randomInt(1, 7);
+    lfLength = (random(0, 1) > mutation) ? set2.lfLength : random(0, 2);
+    lfGravity = (random(0, 1) > mutation) ? set2.lfGravity : random(-3, 3);
+    lfThickness = (random(0, 1) > mutation) ? set2.lfThickness : random(0, 6);
+    lfSteps = (random(0, 1) > mutation) ? set2.lfSteps : randomInt(1, 5);
+
+    return {
+        // general
+        lt: lt,
+        // tronc et branche  --> set1
+        mnSpt: mnSpt,
+        thk: thk,
+        gtInitial: gtInitial,
+        gtPerGen: gtPerGen,
+        warping: warping,
+        angDif: angDif,
+        sEndMx: sEndMx,
+        sMidMx: sMidMx,
+        colorBase: colorBase,
+        // feuilles --> set2
+        lfGen: lfGeno,
+        lfAmount: lfAmount,
+        lfLength: lfLength,
+        lfGravity: lfGravity,
+        lfThickness: lfThickness,
+        lfSteps: lfSteps,
+        colorLeaves: colorLeaves,
+    };
 
 }
 
@@ -96,12 +137,9 @@ function copulate12() {
 
 
 
-
-
-
 function crossParents(set1, set2) {
 
-    let mutation = 0.05;
+    let mutation = 0.01;
     lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
     mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
     thk = (random(0, 1) > mutation) ? set1.thk : random(1, 7);
