@@ -70,16 +70,16 @@ function create_random_tree() {
     return a;
 }
 
-function copulate12() {
+function cross12() {
     //console.log("REPRODUCTION");
     old1 = set1; old2 = set2;
-    set1 = copulate(old1, old2);
-    set2 = copulate(old2, old1);
+    set1 = crossParents(old1, old2);
+    set2 = crossParents(old2, old1);
     generate();
 }
 
 
-function copulate(set1, set2) {
+function crossParents(set1, set2) {
 
     let mutation = 0.05;
     lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
