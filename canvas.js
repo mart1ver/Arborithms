@@ -132,13 +132,8 @@ function copulate(set1, set2) {
 
 }
 
-
-
-
-
-
 function crossParents(set1, set2) {
-
+    
     let mutation = 0.01;
     lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
     mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
