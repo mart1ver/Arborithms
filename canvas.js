@@ -83,7 +83,7 @@ function copulate12() {
     //set1 = crossParents(old1, old2);
     //set2 = crossParents(old2, old1);
     generate();
-
+}
 function crossParents(set1, set2) {
 
     let mutation = 0.05;
