@@ -252,13 +252,6 @@ pixelData[Math.floor(dim.x / 2)][Math.floor(dim.y / 2)].newValue = 254;
 let newTime = Date.now();
 let oldTime = Date.now();
 window.requestAnimationFrame(update);
-
-
-setInterval(() => {
-    planterStepsElapsed = 0;
-    planterUpdate();
-}, 10);
-
 function update() {
     newTime = Date.now();
     deltaTime = (newTime - oldTime) / 1000;
@@ -277,6 +270,12 @@ function planterUpdate() {
     }
     if (Planter.list.length > 0 && planterStepsElapsed < planterStepsPerUpdate) planterUpdate();
 }
+
+setInterval(() => {
+    planterStepsElapsed = 0;
+    planterUpdate();
+}, 10);
+
 //random integer whith min and max value
 function randomInt(min, max) {
     min = Math.ceil(min);
