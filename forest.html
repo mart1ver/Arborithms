@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+   
+    <title>Forest</title>
+</head>
+
+<body>
+    <div id="buttons">
+    <input id="whichLeft" list="varietiesLeft">
+    <button id="newplantLeft" width="400px" onclick="loadInParentSlot(2)">load</button>
+    <button id="renewLeft" width="400px" onclick="reset(2)">rnd</button>
+    <button id="mutateLeft" width="400px" onclick="xxx(2)">mut</button>
+    ------------------------------------------------
+    <button id="jsondump" width="400px" onclick="xxx()">load in left</button>
+    <button id="generate" width="400px" onclick="generateChild()">regrow parents</button>
+    <button id="copulate" width="400px" onclick="cross12()">cross parents</button>
+    <button id="copulate" width="400px" onclick="copulate12()">copulate</button>
+    <button id="jsondump" width="400px" onclick="jsondump()">json dump</button>
+    <button id="jsondump" width="400px" onclick="xxx()">load in right</button>
+    ------------------------------------------------
+    <button id="mutateRight" width="400px" onclick="xxx(1)">mut</button>
+    <button id="renewRight" width="400px" onclick="reset(1)">rnd</button>
+    <button id="newplantRight" width="400px" onclick="loadInParentSlot(1)">load</button>
+    <input id="whichRight" list="varietiesRight">
+    </div>
+<br>
+
+        
+    <div id="bg">    
+    </div>
+    <canvas class="canvas" id="canvas"></canvas>
+    <canvas class="canvas" id="particleCanvas" ></canvas>
+    <script src="color.js"></script>
+    <script src="canvas.js"></script>
+    <h1 id="titleText">A forest of Arborithms !</h1>
+</body>
+
+</html>
