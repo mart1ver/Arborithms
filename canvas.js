@@ -386,7 +386,7 @@ function update() {
 let planterStepsPerUpdate = 4;
 //planterStepsElapsed = variable du compteur de steps de l'animation , doit etre set a 0 
 let planterStepsElapsed = 0;
-//fonction qui qui prend en comte la variable de Q de l'animation pour trigger planter.update()
+//fonction qui qui prend en compte la variable de Q de l'animation pour trigger planter.update()
 function planterUpdate() {
     planterStepsElapsed++;
     for (const planter of Planter.list) {
