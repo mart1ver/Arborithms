@@ -362,11 +362,13 @@ const JSONToFile = (obj, filename) => {
 };
 //load an element of the 'wich' html list into desired parent slot(1 or 2)
 function loadInParentSlot(n) {
-    let tree = document.getElementById("which").value;
+    
     if (n == '1') {
+        let tree = document.getElementById("whichRight").value;
         set1 = treeSettings.get(tree);
     }
     if (n == '2') {
+        let tree = document.getElementById("whichLeft").value;
         set2 = treeSettings.get(tree);
     }
     generate();
