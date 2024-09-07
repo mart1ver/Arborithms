@@ -85,7 +85,6 @@ function copulate12() {
 }
 //cross parents genome and a bit of mutation to make a child in set3 >>>>> candide
 function copulate(set1, set2) {
-
     let mutation = 0.05;
     lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
     mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
