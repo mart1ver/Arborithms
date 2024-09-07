@@ -22,6 +22,7 @@ fetch("Trees.json").then(response => response.json()).then(data => {
     }
 })
 
+
 performance.mark("10");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -31,7 +32,7 @@ ctx.imageSmoothingEnabled = true;
 pctx.imageSmoothingEnabled = true;
 let dim = { x: 3440, y: 1440 };
 let scaleRatioY = window.innerHeight / 100
-let scaleRatioX = window.innerWidth / 200
+let scaleRatioX = window.innerWidth / 1000
 let scaleRatio = Math.min(scaleRatioX, scaleRatioY);
 dim = { x: Math.floor(window.innerWidth / scaleRatio), y: Math.floor(window.innerHeight / scaleRatio) }
 canvas.width = dim.x;
