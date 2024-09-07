@@ -34,25 +34,6 @@ let a = true;
 let set1 = create_random_tree();
 let set2 = create_random_tree();
 let set3 = create_random_tree();
-
-
-let pixelData = Array.from(Array(dim.x), () => new Array(dim.y))
-for (let x = 0; x < dim.x; x++) {
-    for (let y = 0; y < dim.y; y++) {
-        pixelData[x][y] = { value: 0, newValue: 0 };
-    }
-}
-pixelData[Math.floor(dim.x / 2)][Math.floor(dim.y / 2)].newValue = 254;
-let newTime = Date.now();
-let oldTime = Date.now();
-window.requestAnimationFrame(update);
-
-
-setInterval(() => {
-    planterStepsElapsed = 0;
-    planterUpdate();
-}, 10);
-
 function create_random_tree() {
     let a = {
         lt: random(0.3, 1), //taille maximale of the tree
@@ -261,6 +242,22 @@ function reset(n) {
     generate()
 }
 
+let pixelData = Array.from(Array(dim.x), () => new Array(dim.y))
+for (let x = 0; x < dim.x; x++) {
+    for (let y = 0; y < dim.y; y++) {
+        pixelData[x][y] = { value: 0, newValue: 0 };
+    }
+}
+pixelData[Math.floor(dim.x / 2)][Math.floor(dim.y / 2)].newValue = 254;
+let newTime = Date.now();
+let oldTime = Date.now();
+window.requestAnimationFrame(update);
+
+
+setInterval(() => {
+    planterStepsElapsed = 0;
+    planterUpdate();
+}, 10);
 
 function update() {
     newTime = Date.now();
