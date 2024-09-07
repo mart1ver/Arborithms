@@ -6,12 +6,23 @@ var jsonData;
 fetch("Trees.json").then(response => response.json()).then(data => {
     jsonData = data;
     if (data) {
-        var x = document.createElement("DATALIST"); x.setAttribute("id", "varieties");
+        var x1 = document.createElement("DATALISTLEFT"); x1.setAttribute("id", "varietiesLeft");
+        var x2 = document.createElement("DATALISTRIGHT"); x2.setAttribute("id", "varietiesRight");
         for (var i in data) {
             treeSettings.set(i, data[i]);
-            var a1 = document.createElement("OPTION"); a1.setAttribute("value", i);
-            x.appendChild(a1)
-            document.body.appendChild(x);
+
+            var a1 = document.createElement("OPTIONLEFT"); a1.setAttribute("value", i);
+            x1.appendChild(a1)
+            document.body.appendChild(x1);
+
+
+            var a2 = document.createElement("OPTIONRIGHT"); a2.setAttribute("value", i);
+            x2.appendChild(a2)
+            document.body.appendChild(x2);
+
+
+
+
             let setx = treeSettings.get(i);
             setx.colorBase = new Color(setx.colorBase.r, setx.colorBase.g, setx.colorBase.b);
             setx.colorLeaves = new Color(setx.colorLeaves.r, setx.colorLeaves.g, setx.colorLeaves.b);
