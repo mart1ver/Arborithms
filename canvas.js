@@ -23,17 +23,7 @@ let growStepSize = 0.01;
 let deltaTime = 0.001;
 const lfGen = 7;
 const treeSettings = new Map();
-//planterStepsPerUpdate = variable qualite de l'animation 1 = fluide mais peur ramer sur de arbres complexes 
-let planterStepsPerUpdate = 4;
-//planterStepsElapsed = variable du compteur de steps de l'animation , doit etre set a 0 
-let planterStepsElapsed = 0;
-//fonction qui qui prend en compte la variable de Q de l'animation pour trigger planter.update()
-Planter.list = [];
-Particle.list = [];
-let a = true;
-let set1 = create_random_tree();
-let set2 = create_random_tree();
-let set3 = create_random_tree();
+
 function create_random_tree() {
     let a = {
         lt: random(0.3, 1), //taille maximale of the tree
@@ -239,7 +229,7 @@ class Planter {
         }
     }
 }
-
+Planter.list = [];
 class Particle {
     angle;
     speed = 85;
@@ -289,7 +279,11 @@ class Particle {
         }
     }
 }
-
+Particle.list = [];
+let a = true;
+let set1 = create_random_tree();
+let set2 = create_random_tree();
+let set3 = create_random_tree();
 // generate parent only from seed sets
 function generate() {
     if (a) {
@@ -388,6 +382,11 @@ function update() {
     }
     window.requestAnimationFrame(update);
 }
+//planterStepsPerUpdate = variable qualite de l'animation 1 = fluide mais peur ramer sur de arbres complexes 
+let planterStepsPerUpdate = 4;
+//planterStepsElapsed = variable du compteur de steps de l'animation , doit etre set a 0 
+let planterStepsElapsed = 0;
+//fonction qui qui prend en compte la variable de Q de l'animation pour trigger planter.update()
 function planterUpdate() {
     planterStepsElapsed++;
     for (const planter of Planter.list) {
