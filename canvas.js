@@ -1,7 +1,9 @@
+/** 
+ * @type {HTMLCanvasElement}
+*/
 var jsonData;
 
 fetch("Trees.json").then(response => response.json()).then(data => {
-    // console.log("[---->", data);
     jsonData = data;
     if (data) {
         var x = document.createElement("DATALIST"); x.setAttribute("id", "varieties");
@@ -10,7 +12,6 @@ fetch("Trees.json").then(response => response.json()).then(data => {
             var a1 = document.createElement("OPTION"); a1.setAttribute("value", i);
             x.appendChild(a1)
             document.body.appendChild(x);
-            // console.log("******  ", i);
             let setx = treeSettings.get(i);
             setx.colorBase = new Color(setx.colorBase.r, setx.colorBase.g, setx.colorBase.b);
             setx.colorLeaves = new Color(setx.colorLeaves.r, setx.colorLeaves.g, setx.colorLeaves.b);
@@ -22,9 +23,6 @@ fetch("Trees.json").then(response => response.json()).then(data => {
 })
 
 performance.mark("10");
-/** 
- * @type {HTMLCanvasElement}
-*/
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const pcanvas = document.getElementById("particleCanvas");
@@ -66,9 +64,9 @@ function create_random_tree() {
         colorBase: new Color(random(0, 256), random(0, 256), random(0, 256)),
         colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256)),
     };
-    //console.log(a);
     return a;
 }
+//cross parents genome and a bit of mutation in their respectives slots >>>>> candide
 
 function cross12() {
     //console.log("parent cross");
@@ -77,15 +75,15 @@ function cross12() {
     set2 = crossParents(old2, old1);
     generate();
 }
+
+//cross parents genome and a bit of mutation to make a child in set3 >>>>> candide
 function copulate12() {
     //console.log("REPRODUCTION");
-    old1 = set1; old2 = set2;
+    old1 = set1; old2 = set2; // useless in case of copulate??
     set3 = copulate(old1, old2);
     generateChild()
 }
-
-
-
+//cross parents genome and a bit of mutation to make a child in set3 >>>>> candide
 function copulate(set1, set2) {
 
     let mutation = 0.05;
@@ -131,7 +129,7 @@ function copulate(set1, set2) {
     };
 
 }
-
+//cross parents genome and a bit of mutation in their respectives slots >>>>> candide
 function crossParents(set1, set2) {
     
     let mutation = 0.01;
@@ -308,7 +306,7 @@ let a = true;
 let set1 = create_random_tree();
 let set2 = create_random_tree();
 let set3 = create_random_tree();
-
+// generate parent only from seed sets
 function generate() {
     if (a) {
         document.getElementById("titleText").style.opacity = "0";
@@ -320,7 +318,7 @@ function generate() {
     new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
 
 }
-
+// generate parent an child from seed sets
 function generateChild() {
     if (a) {
         document.getElementById("titleText").style.opacity = "0";
@@ -333,7 +331,7 @@ function generateChild() {
     new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
 
 }
-
+// to export desired tree to file in view of integrating it in the main json file >>>>> broken
 function jsondump() {
     let tree = document.getElementById("which").value;
 
@@ -346,7 +344,7 @@ function jsondump() {
     let myObj = Object.fromEntries(treeSettings);
     JSONToFile(myObj, "Trees.json");
 }
-
+// to export desired tree to file in view of integrating it in the main json file >>>>> broken
 const JSONToFile = (obj, filename) => {
     const blob = new Blob([JSON.stringify(obj, null, 2)], {
         type: 'application/json',
@@ -358,7 +356,7 @@ const JSONToFile = (obj, filename) => {
     a.click();
     URL.revokeObjectURL(url);
 };
-
+//load an element of the 'wich' html list into desired parent slot(1 or 2)
 function loadInParentSlot(n) {
     let tree = document.getElementById("which").value;
     if (n == '1') {
@@ -369,14 +367,8 @@ function loadInParentSlot(n) {
     }
     generate();
 }
-
-
-
-
-
-
+//randomise parents sets
 function reset(n) {
-    // console.log(n);
     if (n == '1') {
         set1 = create_random_tree();
     }
@@ -390,7 +382,6 @@ function reset(n) {
     generate()
 }
 
-//console.log(jsonData);
 let pixelData = Array.from(Array(dim.x), () => new Array(dim.y))
 for (let x = 0; x < dim.x; x++) {
     for (let y = 0; y < dim.y; y++) {
@@ -411,10 +402,11 @@ function update() {
     }
     window.requestAnimationFrame(update);
 }
-
+//planterStepsPerUpdate = variable qualite de l'animation 1 = fluide mais peur ramer sur de arbres complexes 
 let planterStepsPerUpdate = 4;
+//planterStepsElapsed = variable du compteur de steps de l'animation , doit etre set a 0 
 let planterStepsElapsed = 0;
-
+//fonction qui qui prend en comte la variable de Q de l'animation pour trigger planter.update()
 function planterUpdate() {
     planterStepsElapsed++;
     for (const planter of Planter.list) {
@@ -422,24 +414,28 @@ function planterUpdate() {
     }
     if (Planter.list.length > 0 && planterStepsElapsed < planterStepsPerUpdate) planterUpdate();
 }
+
 setInterval(() => {
     planterStepsElapsed = 0;
     planterUpdate();
 }, 10);
 
+//randin int
 function randomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+//random whith min and max value
 function random(min, max) {
     return (Math.random() * (max - min)) + min;
 }
 
-function randomElement(array) {
-    return array[randomInt(0, array.length - 1)];
-}
+//function randomElement(array) {
+//    return array[randomInt(0, array.length - 1)];
+//}
 
+//pour le dessin de l'arbre, permet d'obtenir les angles des prochaines branches et splits ( used in updqate() and split () )
 function rotateAngle(from, to, amount) {
     amount = Math.min(1, Math.max(-1, amount))
     var netAngle = (from - to + Math.PI * 2) % (Math.PI * 2);
