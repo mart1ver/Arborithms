@@ -24,7 +24,7 @@ let deltaTime = 0.001;
 const lfGen = 7;
 const treeSettings = new Map();
 //planterStepsPerUpdate = variable qualite de l'animation 1 = fluide mais peur ramer sur de arbres complexes 
-let planterStepsPerUpdate = 4;
+let planterStepsPerUpdate = 3;
 //planterStepsElapsed = variable du compteur de steps de l'animation , doit etre set a 0 
 let planterStepsElapsed = 0;
 //fonction qui qui prend en compte la variable de Q de l'animation pour trigger planter.update()
