@@ -400,7 +400,7 @@ setInterval(() => {
     planterUpdate();
 }, 10);
 
-//randin int
+//random integer whith min and max value
 function randomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
