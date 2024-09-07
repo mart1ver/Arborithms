@@ -1,39 +1,7 @@
 /** 
  * @type {HTMLCanvasElement}
 */
-
-fetchFromTreesData()
-
-
-
-
-function fetchFromTreesData(){
-var jsonData;
-
-fetch("Trees.json").then(response => response.json()).then(data => {
-    jsonData = data;
-    if (data) {
-        var x1 = document.createElement("DATALIST"); x1.setAttribute("id", "varietiesLeft");
-        var x2 = document.createElement("DATALIST"); x2.setAttribute("id", "varietiesRight");
-        for (var i in data) {
-            treeSettings.set(i, data[i]);
-            var a1 = document.createElement("OPTION"); a1.setAttribute("value", i);
-            x1.appendChild(a1)
-            document.body.appendChild(x1);
-            var a2 = document.createElement("OPTION"); a2.setAttribute("value", i);
-            x2.appendChild(a2)
-            document.body.appendChild(x2);
-            let setx = treeSettings.get(i);
-            setx.colorBase = new Color(setx.colorBase.r, setx.colorBase.g, setx.colorBase.b);
-            setx.colorLeaves = new Color(setx.colorLeaves.r, setx.colorLeaves.g, setx.colorLeaves.b);
-            treeSettings.set(i, setx);
-
-
-        }
-    }
-})
-}
-
+fetchFromTreesData() // load from json data
 performance.mark("10");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -262,7 +230,6 @@ class Planter {
     }
 }
 Planter.list = [];
-
 class Particle {
     angle;
     speed = 85;
@@ -444,10 +411,6 @@ function random(min, max) {
     return (Math.random() * (max - min)) + min;
 }
 
-//function randomElement(array) {
-//    return array[randomInt(0, array.length - 1)];
-//}
-
 //pour le dessin de l'arbre, permet d'obtenir les angles des prochaines branches et splits ( used in updqate() and split () )
 function rotateAngle(from, to, amount) {
     amount = Math.min(1, Math.max(-1, amount))
@@ -458,3 +421,28 @@ function rotateAngle(from, to, amount) {
     from %= Math.PI * 2;
     return from;
 }
+
+//to load trees data from jsonfile , construct the html lists to
+function fetchFromTreesData(){
+    var jsonData;
+    fetch("Trees.json").then(response => response.json()).then(data => {
+        jsonData = data;
+        if (data) {
+            var x1 = document.createElement("DATALIST"); x1.setAttribute("id", "varietiesLeft");
+            var x2 = document.createElement("DATALIST"); x2.setAttribute("id", "varietiesRight");
+            for (var i in data) {
+                treeSettings.set(i, data[i]);
+                var a1 = document.createElement("OPTION"); a1.setAttribute("value", i);
+                x1.appendChild(a1)
+                document.body.appendChild(x1);
+                var a2 = document.createElement("OPTION"); a2.setAttribute("value", i);
+                x2.appendChild(a2)
+                document.body.appendChild(x2);
+                let setx = treeSettings.get(i);
+                setx.colorBase = new Color(setx.colorBase.r, setx.colorBase.g, setx.colorBase.b);
+                setx.colorLeaves = new Color(setx.colorLeaves.r, setx.colorLeaves.g, setx.colorLeaves.b);
+                treeSettings.set(i, setx);
+            }
+        }
+    })
+    }
