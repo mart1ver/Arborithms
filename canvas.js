@@ -27,7 +27,7 @@ const treeSettings = new Map();
 let planterStepsPerUpdate = 4;
 //planterStepsElapsed = variable du compteur de steps de l'animation , doit etre set a 0 
 let planterStepsElapsed = 0;
-
+//fonction qui qui prend en compte la variable de Q de l'animation pour trigger planter.update()
 Planter.list = [];
 Particle.list = [];
 let a = true;
@@ -388,7 +388,6 @@ function update() {
     }
     window.requestAnimationFrame(update);
 }
-//fonction qui qui prend en compte la variable de Q de l'animation pour trigger planter.update()
 function planterUpdate() {
     planterStepsElapsed++;
     for (const planter of Planter.list) {
