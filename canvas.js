@@ -1,6 +1,13 @@
 /** 
  * @type {HTMLCanvasElement}
 */
+
+fetchFromTreesData()
+
+
+
+
+function fetchFromTreesData(){
 var jsonData;
 
 fetch("Trees.json").then(response => response.json()).then(data => {
@@ -25,7 +32,7 @@ fetch("Trees.json").then(response => response.json()).then(data => {
         }
     }
 })
-
+}
 
 performance.mark("10");
 const canvas = document.getElementById("canvas");
