@@ -120,7 +120,7 @@ function copulate(set1, set2) {
 }
 //cross parents genome and a bit of mutation in their respectives slots >>>>> candide
 function crossParents(set1, set2) {
-
+    
     let mutation = 0.01;
     lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
     mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
@@ -163,164 +163,6 @@ function crossParents(set1, set2) {
         colorLeaves: colorLeaves,
     };
 
-}
-// generate parent only from seed sets
-function generate() {
-    if (a) {
-        document.getElementById("titleText").style.opacity = "0";
-        a = false;
-    }
-    ctx.clearRect(0, 0, dim.x, dim.y);
-    Planter.list = [];
-    new Planter(dim.x / 4, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set2)
-    new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
-
-}
-// generate parent an child from seed sets
-function generateChild() {
-    if (a) {
-        document.getElementById("titleText").style.opacity = "0";
-        a = false;
-    }
-    ctx.clearRect(0, 0, dim.x, dim.y);
-    Planter.list = [];
-    new Planter(dim.x / 2, dim.y * 0.8, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set3)
-    new Planter(dim.x / 4, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set2)
-    new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
-
-}
-// to export desired tree to file in view of integrating it in the main json file >>>>> broken
-function jsondump() {
-    let tree = document.getElementById("which").value;
-
-    if (tree) {
-        let set = (eval("set" + tree));
-        treeSettings.set(tree, set);
-    }
-
-
-    let myObj = Object.fromEntries(treeSettings);
-    JSONToFile(myObj, "Trees.json");
-}
-// to export desired tree to file in view of integrating it in the main json file >>>>> broken
-const JSONToFile = (obj, filename) => {
-    const blob = new Blob([JSON.stringify(obj, null, 2)], {
-        type: 'application/json',
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${filename}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-};
-//load an element of the 'wich' html list into desired parent slot(1 or 2)
-function loadInParentSlot(n) {
-
-    if (n == '1') {
-        let tree = document.getElementById("whichRight").value;
-        set1 = treeSettings.get(tree);
-    }
-    if (n == '2') {
-        let tree = document.getElementById("whichLeft").value;
-        set2 = treeSettings.get(tree);
-    }
-    generate();
-}
-//randomise parents sets
-function reset(n) {
-    if (n == '1') {
-        set1 = create_random_tree();
-    }
-    else if (n == '2') {
-        set2 = create_random_tree();
-    }
-    else {
-        set1 = create_random_tree();
-        set2 = create_random_tree();
-    }
-    generate()
-}
-
-let pixelData = Array.from(Array(dim.x), () => new Array(dim.y))
-for (let x = 0; x < dim.x; x++) {
-    for (let y = 0; y < dim.y; y++) {
-        pixelData[x][y] = { value: 0, newValue: 0 };
-    }
-}
-pixelData[Math.floor(dim.x / 2)][Math.floor(dim.y / 2)].newValue = 254;
-let newTime = Date.now();
-let oldTime = Date.now();
-window.requestAnimationFrame(update);
-function update() {
-    newTime = Date.now();
-    deltaTime = (newTime - oldTime) / 1000;
-    oldTime = newTime;
-    pctx.clearRect(0, 0, dim.x, dim.y);
-    for (const particle of Particle.list) {
-        if (particle.enabled) particle.update();
-    }
-    window.requestAnimationFrame(update);
-}
-//fonction qui qui prend en compte la variable de Q de l'animation pour trigger planter.update()
-function planterUpdate() {
-    planterStepsElapsed++;
-    for (const planter of Planter.list) {
-        if (planter.enabled) planter.update();
-    }
-    if (Planter.list.length > 0 && planterStepsElapsed < planterStepsPerUpdate) planterUpdate();
-}
-
-setInterval(() => {
-    planterStepsElapsed = 0;
-    planterUpdate();
-}, 10);
-
-//random integer whith min and max value
-function randomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-//random whith min and max value
-function random(min, max) {
-    return (Math.random() * (max - min)) + min;
-}
-
-//pour le dessin de l'arbre, permet d'obtenir les angles des prochaines branches et splits ( used in updqate() and split () )
-function rotateAngle(from, to, amount) {
-    amount = Math.min(1, Math.max(-1, amount))
-    var netAngle = (from - to + Math.PI * 2) % (Math.PI * 2);
-    var delta = Math.min(Math.abs(netAngle - Math.PI * 2), netAngle, amount);
-    var sign = (netAngle - Math.PI) >= 0 ? 1 : -1;
-    from += sign * delta + Math.PI * 2;
-    from %= Math.PI * 2;
-    return from;
-}
-
-//to load trees data from jsonfile , construct the html lists to
-function fetchFromTreesData() {
-    var jsonData;
-    fetch("Trees.json").then(response => response.json()).then(data => {
-        jsonData = data;
-        if (data) {
-            var x1 = document.createElement("DATALIST"); x1.setAttribute("id", "varietiesLeft");
-            var x2 = document.createElement("DATALIST"); x2.setAttribute("id", "varietiesRight");
-            for (var i in data) {
-                treeSettings.set(i, data[i]);
-                var a1 = document.createElement("OPTION"); a1.setAttribute("value", i);
-                x1.appendChild(a1)
-                document.body.appendChild(x1);
-                var a2 = document.createElement("OPTION"); a2.setAttribute("value", i);
-                x2.appendChild(a2)
-                document.body.appendChild(x2);
-                let setx = treeSettings.get(i);
-                setx.colorBase = new Color(setx.colorBase.r, setx.colorBase.g, setx.colorBase.b);
-                setx.colorLeaves = new Color(setx.colorLeaves.r, setx.colorLeaves.g, setx.colorLeaves.b);
-                treeSettings.set(i, setx);
-            }
-        }
-    })
 }
 
 class Planter {
@@ -447,3 +289,162 @@ class Particle {
         }
     }
 }
+
+// generate parent only from seed sets
+function generate() {
+    if (a) {
+        document.getElementById("titleText").style.opacity = "0";
+        a = false;
+    }
+    ctx.clearRect(0, 0, dim.x, dim.y);
+    Planter.list = [];
+    new Planter(dim.x / 4, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set2)
+    new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
+
+}
+// generate parent an child from seed sets
+function generateChild() {
+    if (a) {
+        document.getElementById("titleText").style.opacity = "0";
+        a = false;
+    }
+    ctx.clearRect(0, 0, dim.x, dim.y);
+    Planter.list = [];
+    new Planter(dim.x / 2, dim.y * 0.8, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set3)
+    new Planter(dim.x / 4, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set2)
+    new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
+
+}
+// to export desired tree to file in view of integrating it in the main json file >>>>> broken
+function jsondump() {
+    let tree = document.getElementById("which").value;
+
+    if (tree) {
+        let set = (eval("set" + tree));
+        treeSettings.set(tree, set);
+    }
+
+
+    let myObj = Object.fromEntries(treeSettings);
+    JSONToFile(myObj, "Trees.json");
+}
+// to export desired tree to file in view of integrating it in the main json file >>>>> broken
+const JSONToFile = (obj, filename) => {
+    const blob = new Blob([JSON.stringify(obj, null, 2)], {
+        type: 'application/json',
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${filename}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+};
+//load an element of the 'wich' html list into desired parent slot(1 or 2)
+function loadInParentSlot(n) {
+    
+    if (n == '1') {
+        let tree = document.getElementById("whichRight").value;
+        set1 = treeSettings.get(tree);
+    }
+    if (n == '2') {
+        let tree = document.getElementById("whichLeft").value;
+        set2 = treeSettings.get(tree);
+    }
+    generate();
+}
+//randomise parents sets
+function reset(n) {
+    if (n == '1') {
+        set1 = create_random_tree();
+    }
+    else if (n == '2') {
+        set2 = create_random_tree();
+    }
+    else {
+        set1 = create_random_tree();
+        set2 = create_random_tree();
+    }
+    generate()
+}
+
+let pixelData = Array.from(Array(dim.x), () => new Array(dim.y))
+for (let x = 0; x < dim.x; x++) {
+    for (let y = 0; y < dim.y; y++) {
+        pixelData[x][y] = { value: 0, newValue: 0 };
+    }
+}
+pixelData[Math.floor(dim.x / 2)][Math.floor(dim.y / 2)].newValue = 254;
+let newTime = Date.now();
+let oldTime = Date.now();
+window.requestAnimationFrame(update);
+function update() {
+    newTime = Date.now();
+    deltaTime = (newTime - oldTime) / 1000;
+    oldTime = newTime;
+    pctx.clearRect(0, 0, dim.x, dim.y);
+    for (const particle of Particle.list) {
+        if (particle.enabled) particle.update();
+    }
+    window.requestAnimationFrame(update);
+}
+//fonction qui qui prend en compte la variable de Q de l'animation pour trigger planter.update()
+function planterUpdate() {
+    planterStepsElapsed++;
+    for (const planter of Planter.list) {
+        if (planter.enabled) planter.update();
+    }
+    if (Planter.list.length > 0 && planterStepsElapsed < planterStepsPerUpdate) planterUpdate();
+}
+
+setInterval(() => {
+    planterStepsElapsed = 0;
+    planterUpdate();
+}, 10);
+
+//random integer whith min and max value
+function randomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+//random whith min and max value
+function random(min, max) {
+    return (Math.random() * (max - min)) + min;
+}
+
+//pour le dessin de l'arbre, permet d'obtenir les angles des prochaines branches et splits ( used in updqate() and split () )
+function rotateAngle(from, to, amount) {
+    amount = Math.min(1, Math.max(-1, amount))
+    var netAngle = (from - to + Math.PI * 2) % (Math.PI * 2);
+    var delta = Math.min(Math.abs(netAngle - Math.PI * 2), netAngle, amount);
+    var sign = (netAngle - Math.PI) >= 0 ? 1 : -1;
+    from += sign * delta + Math.PI * 2;
+    from %= Math.PI * 2;
+    return from;
+}
+
+//to load trees data from jsonfile , construct the html lists to
+function fetchFromTreesData(){
+    var jsonData;
+    fetch("Trees.json").then(response => response.json()).then(data => {
+        jsonData = data;
+        if (data) {
+            var x1 = document.createElement("DATALIST"); x1.setAttribute("id", "varietiesLeft");
+            var x2 = document.createElement("DATALIST"); x2.setAttribute("id", "varietiesRight");
+            for (var i in data) {
+                treeSettings.set(i, data[i]);
+                var a1 = document.createElement("OPTION"); a1.setAttribute("value", i);
+                x1.appendChild(a1)
+                document.body.appendChild(x1);
+                var a2 = document.createElement("OPTION"); a2.setAttribute("value", i);
+                x2.appendChild(a2)
+                document.body.appendChild(x2);
+                let setx = treeSettings.get(i);
+                setx.colorBase = new Color(setx.colorBase.r, setx.colorBase.g, setx.colorBase.b);
+                setx.colorLeaves = new Color(setx.colorLeaves.r, setx.colorLeaves.g, setx.colorLeaves.b);
+                treeSettings.set(i, setx);
+            }
+        }
+    })
+    }
