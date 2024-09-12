@@ -55,20 +55,20 @@ function create_random_tree() {
 
 function create_invisible_tree() {
     let a = {
-        lt: random(0.1, 0.2), //taille maximale of the tree
+        lt: 0, //taille maximale of the tree
         mnSpt: random(0.5, 1), // amount of small branches (inverted)
-        thk: random(0, 0), // thickness of the trunk
+        thk: 0, // thickness of the trunk
         gtInitial: 0.3, // gravity initial
         gtPerGen: 0.35, // gravité exercés sur les branches
         warping: random(0, 10), //recrovitude du tronc
-        lfGen: randomInt(2, 6), // number of splits before leaves
+        lfGen: 0, // number of splits before leaves
         angDif: random(0.5, 2), // inclinaison possible des branches
-        lfAmount: randomInt(0, 0), // nombre de feuilles
+        lfAmount: 0, // nombre de feuilles
         lfLength: random(0, 0), // length of leaves
         lfGravity: random(-3, 3), // gravity of leaves
-        lfThickness: random(0, 0), //largeur des feuilles
+        lfThickness: 0, //largeur des feuilles
         sEndMx: randomInt(2, 7), // number of mini-branches at the end of the split
-        sMidMx: randomInt(1, 10), // number of branches at the trunk
+        sMidMx: 0, // number of branches at the trunk
         lfSteps: randomInt(1, 5), // nombre d'etapes dans les feuilles
         colorBase: new Color(random(0, 256), random(0, 256), random(0, 256)),
         colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256)),
