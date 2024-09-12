@@ -27,7 +27,7 @@ const treeSettings = new Map();
 let planterStepsPerUpdate = 3;
 //planterStepsElapsed = variable du compteur de steps de l'animation , doit etre set a 0 
 let planterStepsElapsed = 0;
-//fonction qui qui prend en compte la variable de Q de l'animation pour trigger planter.update()
+
 
 function create_random_tree() {
     let a = {
@@ -51,6 +51,31 @@ function create_random_tree() {
     };
     return a;
 }
+
+
+function create_invisible_tree() {
+    let a = {
+        lt: random(0.1, 0.2), //taille maximale of the tree
+        mnSpt: random(0.5, 1), // amount of small branches (inverted)
+        thk: random(0, 0), // thickness of the trunk
+        gtInitial: 0.3, // gravity initial
+        gtPerGen: 0.35, // gravité exercés sur les branches
+        warping: random(0, 10), //recrovitude du tronc
+        lfGen: randomInt(2, 6), // number of splits before leaves
+        angDif: random(0.5, 2), // inclinaison possible des branches
+        lfAmount: randomInt(0, 0), // nombre de feuilles
+        lfLength: random(0, 0), // length of leaves
+        lfGravity: random(-3, 3), // gravity of leaves
+        lfThickness: random(0, 0), //largeur des feuilles
+        sEndMx: randomInt(2, 7), // number of mini-branches at the end of the split
+        sMidMx: randomInt(1, 10), // number of branches at the trunk
+        lfSteps: randomInt(1, 5), // nombre d'etapes dans les feuilles
+        colorBase: new Color(random(0, 256), random(0, 256), random(0, 256)),
+        colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256)),
+    };
+    return a;
+}
+
 //cross parents genome and a bit of mutation in their respectives slots >>>>> candide
 
 function cross12() {
@@ -288,7 +313,7 @@ Particle.list = [];
 let a = true;
 let set1 = create_random_tree();
 let set2 = create_random_tree();
-let set3 = create_random_tree();
+let set3 = create_invisible_tree();
 // generate parent only from seed sets
 function generate() {
     if (a) {
