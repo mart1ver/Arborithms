@@ -83,7 +83,7 @@ function cross12() {
     old1 = set1; old2 = set2;
     set1 = crossParents(old1, old2);
     set2 = crossParents(old2, old1);
-    generate();
+    generateChild();
 }
 
 //cross parents genome and a bit of mutation to make a child in set3 >>>>> candide
@@ -375,7 +375,7 @@ function loadInParentSlot(n) {
         let tree = document.getElementById("whichLeft").value;
         set2 = treeSettings.get(tree);
     }
-    generate();
+    generateChild();
 }
 //randomise parents sets
 function reset(n) {
@@ -389,7 +389,7 @@ function reset(n) {
         set1 = create_random_tree();
         set2 = create_random_tree();
     }
-    generate()
+    generateChild()
 }
 
 let pixelData = Array.from(Array(dim.x), () => new Array(dim.y))
