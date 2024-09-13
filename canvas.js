@@ -28,7 +28,7 @@ let planterStepsPerUpdate = 3;
 //planterStepsElapsed = variable du compteur de steps de l'animation , doit etre set a 0 
 let planterStepsElapsed = 0;
 
-
+// create random trees for the first step in parents slots
 function create_random_tree() {
     let a = {
         lt: random(0.3, 1), //taille maximale of the tree
@@ -52,7 +52,7 @@ function create_random_tree() {
     return a;
 }
 
-
+// create an invisible tree for child slot at first step
 function create_invisible_tree() {
     let a = {
         lt: 0, //taille maximale of the tree
@@ -93,6 +93,8 @@ function copulate12() {
     set3 = copulate(old1, old2);
     generateChild()
 }
+
+
 //cross parents genome and a bit of mutation to make a child in set3 >>>>> candide
 function copulate(set1, set2) {
     let mutation = 0.05;
