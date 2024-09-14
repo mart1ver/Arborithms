@@ -60,7 +60,7 @@ function create_random_tree() {
 function create_invisible_tree() {
 
     let a = {
-        TxMut: 0.05, //taux de mutation
+        TxMut: 0, //taux de mutation
         gen: 0, // generation
         lt: 0, //taille maximale of the tree
         mnSpt: random(0.5, 1), // amount of small branches (inverted)
@@ -71,14 +71,14 @@ function create_invisible_tree() {
         lfGen: 0, // number of splits before leaves
         angDif: random(0.5, 2), // inclinaison possible des branches
         lfAmount: 0, // nombre de feuilles
-        lfLength: random(0, 0), // length of leaves
+        lfLength: 0, // length of leaves
         lfGravity: random(-3, 3), // gravity of leaves
         lfThickness: 0, //largeur des feuilles
-        sEndMx: randomInt(2, 7), // number of mini-branches at the end of the split
+        sEndMx: 0, // number of mini-branches at the end of the split
         sMidMx: 0, // number of branches at the trunk
-        lfSteps: randomInt(1, 5), // nombre d'etapes dans les feuilles
-        colorBase: new Color(random(0, 256), random(0, 256), random(0, 256)),
-        colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256)),
+        lfSteps: 0, // nombre d'etapes dans les feuilles
+        colorBase: new Color(random(0, 256), random(0, 256), random(0, 256),0),
+        colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256),0),
     };
     return a;
 }
