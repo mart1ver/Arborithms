@@ -147,6 +147,20 @@ function copulate(set1, set2) {
     };
 
 }
+//load child in parent slot left (set2)
+function loadLeft(set) {
+set2 = set3;
+set3 = create_invisible_tree();
+
+}
+
+//load child in parent slot right (set1)
+function loadRight(set) {
+
+    set1 = set3;
+    set3 = create_invisible_tree();
+}
+
 // mutate a set par derive , reecrire la partie couleurs
 function mutate(set) {
     let mutation = set.TxMut;
