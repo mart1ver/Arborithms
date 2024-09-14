@@ -190,8 +190,8 @@ function mutate(set) {
 //cross mutated parents genome and in their respectives slots and swap them 
 function crossParentz() {
     // on mute les parents
-    mutate(set1);
-    mutate(set2);
+    //mutate(set1);
+    //mutate(set2);
     //on backup les adn
     let set1Old = set1;
     let set2Old = set2;
@@ -208,13 +208,20 @@ function crossParentz() {
     set1.sMidMx = set2Old.sMidMx;
     set1.colorBase = set2Old.colorBase;
 
-    set2.colorLeaves = set1Old.colorLeaves;
-    set2.lfGen = set1Old.lfGen;
-    set2.lfAmount = set1Old.lfAmount;
-    set2.lfLength = set1Old.lfLength;
-    set2.lfGravity = set1Old.lfGravity;
-    set2.lfThickness = set1Old.lfThickness;
-    set2.lfSteps = set1Old.lfSteps;
+    set2.TxMut = set1Old.TxMut;
+    set2.lt = set1Old.lt;
+    set2.mnSpt = set1Old.mnSpt;
+    set2.thk = set1Old.thk;
+    set2.gtInitial = set1Old.gtInitial;
+    set2.gtPerGen = set1Old.gtPerGen;
+    set2.warping = set1Old.warping;
+    set2.angDif = set1Old.angDif;
+    set2.sEndMx = set1Old.sEndMx;
+    set2.sMidMx = set1Old.sMidMx;
+    set2.colorBase = set1Old.colorBase;
+
+
+
     //on incremente la generation dans les deux adn
     set1.gen = set1.gen + 1;
     set2.gen = set2.gen + 1;
@@ -222,8 +229,6 @@ function crossParentz() {
     set1Old = set1;
     set2Old = set2;
     //on swap les adn
-    set1Old = set1;
-    set2Old = set2;
     set2 = set1Old;
     set1 = set2Old;
 }
