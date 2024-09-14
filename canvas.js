@@ -151,8 +151,8 @@ function copulate(set1, set2) {
 function mutate(set) {
     let mutation = set.TxMut;
     console.log(mutation);
-    if (random(0, 1) > mutation) { if (random(0, 1) > 0, 5) { set.TxMut = set.TxMut * 1.1 } else { set.TxMut = set.TxMut * 0.9 } };
-    if (random(0, 1) > mutation) { if (random(0, 1) > 0, 5) { set.lt = set.lt * 1.1 } else { set.lt = set.lt * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.TxMut = set.TxMut * 1.1 } else { set.TxMut = set.TxMut * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lt = set.lt * 1.1 } else { set.lt = set.lt * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.mnSpt = set.mnSpt * 1.1 } else { set.mnSpt = set.mnSpt * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.thk = set.thk * 1.1 } else { set.thk = set.thk * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.gtInitial = set.gtInitial * 1.1 } else { set.gtInitial = set.gtInitial * 0.9 } };
@@ -169,7 +169,7 @@ function mutate(set) {
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfGravity = set.lfGravity * 1.1 } else { set.lfGravity = set.lfGravity * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfThickness = set.lfThickness * 1.1 } else { set.lfThickness = set.lfThickness * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfSteps = set.lfSteps * 1.1 } else { set.lfSteps = set.lfSteps * 0.9 } };
-    generateChild()
+    generateChild();
 }
 
 //cross parents genome and a bit of mutation in their respectives slots >>>>> candide
