@@ -147,7 +147,7 @@ function copulate(set1, set2) {
     };
 
 }
-
+// mutate a set par derive , reecrire la partie couleurs
 function mutate(set) {
     let mutation = set.TxMut;
     console.log(mutation);
