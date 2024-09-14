@@ -207,6 +207,7 @@ function crossParentz() {
     set1.sEndMx = set2Old.sEndMx;
     set1.sMidMx = set2Old.sMidMx;
     set1.colorBase = set2Old.colorBase;
+
     set2.colorLeaves = set1Old.colorLeaves;
     set2.lfGen = set1Old.lfGen;
     set2.lfAmount = set1Old.lfAmount;
@@ -217,7 +218,14 @@ function crossParentz() {
     //on incremente la generation dans les deux adn
     set1.gen = set1.gen + 1;
     set2.gen = set2.gen + 1;
-    
+    //on backup les adn
+    let set1Old = set1;
+    let set2Old = set2;
+    //on swap les adn
+    let set1Old = set1;
+    let set2Old = set2;
+    set2 = set1Old;
+    set1 = set2Old;
 }
 
 class Planter {
