@@ -202,8 +202,7 @@ function crossParents() {
     set1.sMidMx = aold2.sMidMx;
     set1.colorBase = aold2.colorBase;
 
-
-
+   
     set2.TxMut = aold1.TxMut;
     set2.lt = aold1.lt;
     set2.mnSpt = aold1.mnSpt;
