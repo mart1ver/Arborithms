@@ -77,8 +77,8 @@ function create_invisible_tree() {
         sEndMx: 0, // number of mini-branches at the end of the split
         sMidMx: 0, // number of branches at the trunk
         lfSteps: 0, // nombre d'etapes dans les feuilles
-        colorBase: new Color(random(0, 256), random(0, 256), random(0, 256),0),
-        colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256),0),
+        colorBase: new Color(random(0, 256), random(0, 256), random(0, 256), 0),
+        colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256), 0),
     };
     return a;
 }
@@ -187,51 +187,37 @@ function mutate(set) {
     generateChild();
 }
 
-//cross parents genome and a bit of mutation in their respectives slots >>>>> candide
-function crossParents(set1, set2) {
-
-    let mutation = 0.01;
-    lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
-    mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
-    thk = (random(0, 1) > mutation) ? set1.thk : random(1, 7);
-    gtInitial = (random(0, 1) > mutation) ? set1.gtInitial : set2.gtInitial;
-    gtPerGen = (random(0, 1) > mutation) ? set1.gtPerGen : set2.gtPerGen;
-    warping = (random(0, 1) > mutation) ? set1.warping : random(0, 10);
-    angDif = (random(0, 1) > mutation) ? set1.angDif : random(0.5, 2);
-    sEndMx = (random(0, 1) > mutation) ? set1.sEndMx : randomInt(2, 7);
-    sMidMx = (random(0, 1) > mutation) ? set1.sMidMx : randomInt(1, 10);
-    colorBase = (random(0, 1) > mutation) ? set1.colorBase : new Color(random(0, 256), random(0, 256), random(0, 256));
-    colorLeaves = (random(0, 1) > mutation) ? set2.colorLeaves : new Color(random(0, 256), random(0, 256), random(0, 256));
-    lfGeno = (random(0, 1) > mutation) ? set2.lfGen : randomInt(2, 6);
-    lfAmount = (random(0, 1) > mutation) ? set2.lfAmount : randomInt(1, 7);
-    lfLength = (random(0, 1) > mutation) ? set2.lfLength : random(0, 2);
-    lfGravity = (random(0, 1) > mutation) ? set2.lfGravity : random(-3, 3);
-    lfThickness = (random(0, 1) > mutation) ? set2.lfThickness : random(0, 6);
-    lfSteps = (random(0, 1) > mutation) ? set2.lfSteps : randomInt(1, 5);
-
-    return {
-        // general
-        lt: lt,
-        // tronc et branche  --> set1
-        mnSpt: mnSpt,
-        thk: thk,
-        gtInitial: gtInitial,
-        gtPerGen: gtPerGen,
-        warping: warping,
-        angDif: angDif,
-        sEndMx: sEndMx,
-        sMidMx: sMidMx,
-        colorBase: colorBase,
-        // feuilles --> set2
-        lfGen: lfGeno,
-        lfAmount: lfAmount,
-        lfLength: lfLength,
-        lfGravity: lfGravity,
-        lfThickness: lfThickness,
-        lfSteps: lfSteps,
-        colorLeaves: colorLeaves,
-    };
-
+//cross mutated parents genome and in their respectives slots and swap them 
+function crossParentz() {
+    // on mute les parents
+    mutate(set1);
+    mutate(set2);
+    //on backup les adn
+    let set1Old = set1;
+    let set2Old = set2;
+    //on croise les genomes
+    set1.TxMut = set2Old.TxMut;
+    set1.lt = set2Old.lt;
+    set1.mnSpt = set2Old.mnSpt;
+    set1.thk = set2Old.thk;
+    set1.gtInitial = set2Old.gtInitial;
+    set1.gtPerGen = set2Old.gtPerGen;
+    set1.warping = set2Old.warping;
+    set1.angDif = set2Old.angDif;
+    set1.sEndMx = set2Old.sEndMx;
+    set1.sMidMx = set2Old.sMidMx;
+    set1.colorBase = set2Old.colorBase;
+    set2.colorLeaves = set1Old.colorLeaves;
+    set2.lfGen = set1Old.lfGen;
+    set2.lfAmount = set1Old.lfAmount;
+    set2.lfLength = set1Old.lfLength;
+    set2.lfGravity = set1Old.lfGravity;
+    set2.lfThickness = set1Old.lfThickness;
+    set2.lfSteps = set1Old.lfSteps;
+    //on incremente la generation dans les deux adn
+    set1.gen = set1.gen + 1;
+    set2.gen = set2.gen + 1;
+    
 }
 
 class Planter {
