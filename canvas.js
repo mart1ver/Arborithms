@@ -31,6 +31,10 @@ let planterStepsElapsed = 0;
 // create random trees for the first step in parents slots
 function create_random_tree() {
     let a = {
+        TxMut: 0.05, //taux de mutation
+        gen: 0, // generation
+        lt: random(0.3, 1), //taille maximale of the tree
+        mnSpt: random(0.5, 1), // amount of small branches (inverted)
         lt: random(0.3, 1), //taille maximale of the tree
         mnSpt: random(0.5, 1), // amount of small branches (inverted)
         thk: random(1, 7), // thickness of the trunk
@@ -54,7 +58,10 @@ function create_random_tree() {
 
 // create an invisible tree for child slot at first step
 function create_invisible_tree() {
+    
     let a = {
+        TxMut: 0.05, //taux de mutation
+        gen: 0, // generation
         lt: 0, //taille maximale of the tree
         mnSpt: random(0.5, 1), // amount of small branches (inverted)
         thk: 0, // thickness of the trunk
