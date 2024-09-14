@@ -58,7 +58,7 @@ function create_random_tree() {
 
 // create an invisible tree for child slot at first step
 function create_invisible_tree() {
-    
+
     let a = {
         TxMut: 0.05, //taux de mutation
         gen: 0, // generation
@@ -148,33 +148,33 @@ function copulate(set1, set2) {
 
 }
 
-function mutate(set){
+function mutate(set) {
     let mutation = set.TxMut;
     console.log(mutation);
-    if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.TxMut = set.TxMut*1.1}else{set.TxMut = set.TxMut*0.9}};
-    if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.lt = set.lt*1.1}else{set.lt = set.lt*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.mnSpt = set.mnSpt*1.1}else{set.mnSpt = set.mnSpt*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.thk = set.thk*1.1}else{set.thk = set.thk*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.gtInitial = set.gtInitial*1.1}else{set.gtInitial = set.gtInitial*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.gtPerGen = set.gtPerGen*1.1}else{set.gtPerGen = set.gtPerGen*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.warping = set.warping*1.1}else{set.warping = set.warping*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.angDif = set.angDif*1.1}else{set.angDif = set.angDif*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.sEndMx = set.sEndMx*1.1}else{set.sEndMx = set.sEndMx*0.9}};
-    if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.sMidMx = set.sMidMx*1.1}else{set.sMidMx = set.sMidMx*0.9}};
-    if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.colorBase = new Color(random(0, 256), random(0, 256), random(0, 256))}};//to be revisited
-    if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.colorLeaves = new Color(random(0, 256), random(0, 256), random(0, 256))}};//to be revisited
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfGen = set.lfGen*1.1}else{set.lfGen = set.lfGen*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfAmount = set.lfAmount*1.1}else{set.lfAmount = set.lfAmount*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfLength = set.lfLength*1.1}else{set.lfLength = set.lfLength*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfGravity = set.lfGravity*1.1}else{set.lfGravity = set.lfGravity*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfThickness = set.lfThickness*1.1}else{set.lfThickness = set.lfThickness*0.9}};
-    if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfSteps = set.lfSteps*1.1}else{set.lfSteps = set.lfSteps*0.9}};
-
+    if (random(0, 1) > mutation) { if (random(0, 1) > 0, 5) { set.TxMut = set.TxMut * 1.1 } else { set.TxMut = set.TxMut * 0.9 } };
+    if (random(0, 1) > mutation) { if (random(0, 1) > 0, 5) { set.lt = set.lt * 1.1 } else { set.lt = set.lt * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.mnSpt = set.mnSpt * 1.1 } else { set.mnSpt = set.mnSpt * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.thk = set.thk * 1.1 } else { set.thk = set.thk * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.gtInitial = set.gtInitial * 1.1 } else { set.gtInitial = set.gtInitial * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.gtPerGen = set.gtPerGen * 1.1 } else { set.gtPerGen = set.gtPerGen * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.warping = set.warping * 1.1 } else { set.warping = set.warping * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.angDif = set.angDif * 1.1 } else { set.angDif = set.angDif * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.sEndMx = set.sEndMx * 1.1 } else { set.sEndMx = set.sEndMx * 0.9 } };
+    if (random(0, 1) > mutation) { if (random(0, 1) > 0, 5) { set.sMidMx = set.sMidMx * 1.1 } else { set.sMidMx = set.sMidMx * 0.9 } };
+    if (random(0, 1) > mutation) { if (random(0, 1) > 0, 5) { set.colorBase = new Color(random(0, 256), random(0, 256), random(0, 256)) } };//to be revisited
+    if (random(0, 1) > mutation) { if (random(0, 1) > 0, 5) { set.colorLeaves = new Color(random(0, 256), random(0, 256), random(0, 256)) } };//to be revisited
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfGen = set.lfGen * 1.1 } else { set.lfGen = set.lfGen * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfAmount = set.lfAmount * 1.1 } else { set.lfAmount = set.lfAmount * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfLength = set.lfLength * 1.1 } else { set.lfLength = set.lfLength * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfGravity = set.lfGravity * 1.1 } else { set.lfGravity = set.lfGravity * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfThickness = set.lfThickness * 1.1 } else { set.lfThickness = set.lfThickness * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfSteps = set.lfSteps * 1.1 } else { set.lfSteps = set.lfSteps * 0.9 } };
+    generateChild()
 }
 
 //cross parents genome and a bit of mutation in their respectives slots >>>>> candide
 function crossParents(set1, set2) {
-    
+
     let mutation = 0.01;
     lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
     mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
@@ -400,7 +400,7 @@ const JSONToFile = (obj, filename) => {
 };
 //load an element of the 'wich' html list into desired parent slot(1 or 2)
 function loadInParentSlot(n) {
-    
+
     if (n == '1') {
         let tree = document.getElementById("whichRight").value;
         set1 = treeSettings.get(tree);
@@ -483,7 +483,7 @@ function rotateAngle(from, to, amount) {
 }
 
 //to load trees data from jsonfile , construct the html lists to
-function fetchFromTreesData(){
+function fetchFromTreesData() {
     var jsonData;
     fetch("Trees.json").then(response => response.json()).then(data => {
         jsonData = data;
@@ -505,4 +505,4 @@ function fetchFromTreesData(){
             }
         }
     })
-    }
+}
