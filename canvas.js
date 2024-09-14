@@ -149,16 +149,16 @@ function copulate(set1, set2) {
 }
 //load child in parent slot left (set2)
 function loadLeft(set) {
-set2 = set3;
-set3 = create_invisible_tree();
-
+    set2 = set3;
+    set3 = create_invisible_tree();
+    generateChild()
 }
 
 //load child in parent slot right (set1)
 function loadRight(set) {
-
     set1 = set3;
     set3 = create_invisible_tree();
+    generateChild()
 }
 
 // mutate a set par derive , reecrire la partie couleurs
