@@ -205,8 +205,19 @@ function crossParents() {
 
 
 
+    set1.TxMut = set2Old.TxMut;
+    set1.lt = set2Old.lt;
+    set1.mnSpt = set2Old.mnSpt;
+    set1.thk = set2Old.thk;
+    set1.gtInitial = set2Old.gtInitial;
+    set1.gtPerGen = set2Old.gtPerGen;
+    set1.warping = set2Old.warping;
+    set1.angDif = set2Old.angDif;
+    set1.sEndMx = set2Old.sEndMx;
+    set1.sMidMx = set2Old.sMidMx;
+    set1.colorBase = set2Old.colorBase;
 
-   
+
 
 
 
@@ -217,8 +228,8 @@ function crossParents() {
     //set1Old = set1;
     //set2Old = set2;
     //on swap les adn
-   // set2 = set1Old;
-   // set1 = set2Old;
+    // set2 = set1Old;
+    // set1 = set2Old;
     generateChild();
 }
 
