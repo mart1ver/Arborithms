@@ -190,6 +190,19 @@ function crossParents() {
     old1 = set1;
     old2 = set2;
     //on croise les genomes
+    set1.TxMut = old2.TxMut;
+    set1.lt = old2.lt;
+    set1.mnSpt = old2.mnSpt;
+    set1.thk = old2.thk;
+    set1.gtInitial = old2.gtInitial;
+    set1.gtPerGen = old2.gtPerGen;
+    set1.warping = old2.warping;
+    set1.angDif = old2.angDif;
+    set1.sEndMx = old2.sEndMx;
+    set1.sMidMx = old2.sMidMx;
+    set1.colorBase = old2.colorBase;
+
+
 
     set2.TxMut = old1.TxMut;
     set2.lt = old1.lt;
@@ -205,20 +218,7 @@ function crossParents() {
 
 
 
-    set1.TxMut = old2.TxMut;
-    set1.lt = old2.lt;
-    set1.mnSpt = old2.mnSpt;
-    set1.thk = old2.thk;
-    set1.gtInitial = old2.gtInitial;
-    set1.gtPerGen = old2.gtPerGen;
-    set1.warping = old2.warping;
-    set1.angDif = old2.angDif;
-    set1.sEndMx = old2.sEndMx;
-    set1.sMidMx = old2.sMidMx;
-    set1.colorBase = old2.colorBase;
-
-
-
+ 
 
 
     //on incremente la generation dans les deux adn
