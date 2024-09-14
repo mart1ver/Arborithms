@@ -169,6 +169,7 @@ function mutate(set) {
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfGravity = set.lfGravity * 1.1 } else { set.lfGravity = set.lfGravity * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfThickness = set.lfThickness * 1.1 } else { set.lfThickness = set.lfThickness * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfSteps = set.lfSteps * 1.1 } else { set.lfSteps = set.lfSteps * 0.9 } };
+    set.gen = set.gen + 1;
     generateChild();
 }
 
