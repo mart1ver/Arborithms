@@ -219,11 +219,11 @@ function crossParentz() {
     set1.gen = set1.gen + 1;
     set2.gen = set2.gen + 1;
     //on backup les adn
-    let set1Old = set1;
-    let set2Old = set2;
+    set1Old = set1;
+    set2Old = set2;
     //on swap les adn
-    let set1Old = set1;
-    let set2Old = set2;
+    set1Old = set1;
+    set2Old = set2;
     set2 = set1Old;
     set1 = set2Old;
 }
