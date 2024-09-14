@@ -153,38 +153,21 @@ function mutate(set){
     console.log(mutation);
     if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.TxMut = set.TxMut*1.1}else{set.TxMut = set.TxMut*0.9}};
     if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.lt = set.lt*1.1}else{set.lt = set.lt*0.9}};
-    
-    //mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.mnSpt = set.mnSpt*1.1}else{set.mnSpt = set.mnSpt*0.9}};
-    //thk = (random(0, 1) > mutation) ? set1.thk : random(1, 7);
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.thk = set.thk*1.1}else{set.thk = set.thk*0.9}};
-    //gtInitial = (random(0, 1) > mutation) ? set1.gtInitial : set2.gtInitial;
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.gtInitial = set.gtInitial*1.1}else{set.gtInitial = set.gtInitial*0.9}};
-    //gtPerGen = (random(0, 1) > mutation) ? set1.gtPerGen : set2.gtPerGen;
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.gtPerGen = set.gtPerGen*1.1}else{set.gtPerGen = set.gtPerGen*0.9}};
-    //warping = (random(0, 1) > mutation) ? set1.warping : random(0, 10);
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.warping = set.warping*1.1}else{set.warping = set.warping*0.9}};
-    //angDif = (random(0, 1) > mutation) ? set1.angDif : random(0.5, 2);
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.angDif = set.angDif*1.1}else{set.angDif = set.angDif*0.9}};
-    //sEndMx = (random(0, 1) > mutation) ? set1.sEndMx : randomInt(2, 7);
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.sEndMx = set.sEndMx*1.1}else{set.sEndMx = set.sEndMx*0.9}};
-    //sMidMx = (random(0, 1) > mutation) ? set1.sMidMx : randomInt(1, 10);
     if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.sMidMx = set.sMidMx*1.1}else{set.sMidMx = set.sMidMx*0.9}};
-    //colorBase = (random(0, 1) > mutation) ? set1.colorBase : new Color(random(0, 256), random(0, 256), random(0, 256));
-    //if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.lt = set.lt*1.1}else{set.lt = set.lt*0.9}};
-    //colorLeaves = (random(0, 1) > mutation) ? set2.colorLeaves : new Color(random(0, 256), random(0, 256), random(0, 256));
-    //if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.lt = set.lt*1.1}else{set.lt = set.lt*0.9}};
-    //lfGen = (random(0, 1) > mutation) ? set2.lfGen : randomInt(2, 6);
+    if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.colorBase = new Color(random(0, 256), random(0, 256), random(0, 256))}};//to be revisited
+    if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.colorLeaves = new Color(random(0, 256), random(0, 256), random(0, 256))}};//to be revisited
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfGen = set.lfGen*1.1}else{set.lfGen = set.lfGen*0.9}};
-    //lfAmount = (random(0, 1) > mutation) ? set2.lfAmount : randomInt(1, 7);
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfAmount = set.lfAmount*1.1}else{set.lfAmount = set.lfAmount*0.9}};
-    //lfLength = (random(0, 1) > mutation) ? set2.lfLength : random(0, 2);
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfLength = set.lfLength*1.1}else{set.lfLength = set.lfLength*0.9}};
-    //lfGravity = (random(0, 1) > mutation) ? set2.lfGravity : random(-3, 3);
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfGravity = set.lfGravity*1.1}else{set.lfGravity = set.lfGravity*0.9}};
-    //lfThickness = (random(0, 1) > mutation) ? set2.lfThickness : random(0, 6);
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfThickness = set.lfThickness*1.1}else{set.lfThickness = set.lfThickness*0.9}};
-    //lfSteps = (random(0, 1) > mutation) ? set2.lfSteps : randomInt(1, 5);
     if(random(0, 1) < mutation) {if(random(0, 1) > 0,5) {set.lfSteps = set.lfSteps*1.1}else{set.lfSteps = set.lfSteps*0.9}};
 
 }
