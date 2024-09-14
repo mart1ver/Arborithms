@@ -191,17 +191,17 @@ function crossParents() {
     let set2Old = set2;
     //on croise les genomes
 
-    set2.TxMut = set1Old.TxMut;
-    set2.lt = set1Old.lt;
-    set2.mnSpt = set1Old.mnSpt;
-    set2.thk = set1Old.thk;
-    set2.gtInitial = set1Old.gtInitial;
-    set2.gtPerGen = set1Old.gtPerGen;
-    set2.warping = set1Old.warping;
-    set2.angDif = set1Old.angDif;
-    set2.sEndMx = set1Old.sEndMx;
-    set2.sMidMx = set1Old.sMidMx;
-    set2.colorBase = set1Old.colorBase;
+    set2.TxMut = set1.TxMut;
+    set2.lt = set1.lt;
+    set2.mnSpt = set1.mnSpt;
+    set2.thk = set1.thk;
+    set2.gtInitial = set1.gtInitial;
+    set2.gtPerGen = set1.gtPerGen;
+    set2.warping = set1.warping;
+    set2.angDif = set1.angDif;
+    set2.sEndMx = set1.sEndMx;
+    set2.sMidMx = set1.sMidMx;
+    set2.colorBase = set1.colorBase;
 
 
 
