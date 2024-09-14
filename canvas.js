@@ -160,9 +160,9 @@ function mutate(set) {
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.warping = set.warping * 1.1 } else { set.warping = set.warping * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.angDif = set.angDif * 1.1 } else { set.angDif = set.angDif * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.sEndMx = set.sEndMx * 1.1 } else { set.sEndMx = set.sEndMx * 0.9 } };
-    if (random(0, 1) > mutation) { if (random(0, 1) > 0, 5) { set.sMidMx = set.sMidMx * 1.1 } else { set.sMidMx = set.sMidMx * 0.9 } };
-    if (random(0, 1) > mutation) { if (random(0, 1) > 0, 5) { set.colorBase = new Color(random(0, 256), random(0, 256), random(0, 256)) } };//to be revisited
-    if (random(0, 1) > mutation) { if (random(0, 1) > 0, 5) { set.colorLeaves = new Color(random(0, 256), random(0, 256), random(0, 256)) } };//to be revisited
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.sMidMx = set.sMidMx * 1.1 } else { set.sMidMx = set.sMidMx * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.colorBase = new Color(random(0, 256), random(0, 256), random(0, 256)) } };//to be revisited
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.colorLeaves = new Color(random(0, 256), random(0, 256), random(0, 256)) } };//to be revisited
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfGen = set.lfGen * 1.1 } else { set.lfGen = set.lfGen * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfAmount = set.lfAmount * 1.1 } else { set.lfAmount = set.lfAmount * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfLength = set.lfLength * 1.1 } else { set.lfLength = set.lfLength * 0.9 } };
