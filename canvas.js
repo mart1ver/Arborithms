@@ -187,7 +187,7 @@ function crossParents() {
     //mutate(set1);
     //mutate(set2);
     //on backup les adn
-    let old2 = set2;
+    old2 = set2;
     //on croise les genomes
 
     set2.TxMut = set1.TxMut;
