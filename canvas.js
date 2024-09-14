@@ -140,6 +140,13 @@ function copulate(set1, set2) {
     };
 
 }
+
+function mutate(set){
+    let mutation = set.TxMut;
+    if(random(0, 1) > mutation) {if(random(0, 1) > 0,5) {set.lt = set.lt*1.1}else{set.lt = set.lt*0.9}};
+
+}
+
 //cross parents genome and a bit of mutation in their respectives slots >>>>> candide
 function crossParents(set1, set2) {
     
