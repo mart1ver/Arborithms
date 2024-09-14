@@ -187,7 +187,6 @@ function crossParents() {
     //mutate(set1);
     //mutate(set2);
     //on backup les adn
-    let set1Old = set1;
     let old2 = set2;
     //on croise les genomes
 
