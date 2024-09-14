@@ -85,13 +85,7 @@ function create_invisible_tree() {
 
 //cross parents genome and a bit of mutation in their respectives slots >>>>> candide
 
-function cross12() {
-    //console.log("parent cross");
-    old1 = set1; old2 = set2;
-    set1 = crossParents(old1, old2);
-    set2 = crossParents(old2, old1);
-    generateChild();
-}
+
 
 //cross parents genome and a bit of mutation to make a child in set3 >>>>> candide
 function copulate12() {
@@ -188,7 +182,7 @@ function mutate(set) {
 }
 
 //cross mutated parents genome and in their respectives slots and swap them 
-function crossParentz() {
+function crossParents() {
     // on mute les parents
     //mutate(set1);
     //mutate(set2);
