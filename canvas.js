@@ -231,6 +231,7 @@ function crossParentz() {
     //on swap les adn
     set2 = set1Old;
     set1 = set2Old;
+    generateChild();
 }
 
 class Planter {
