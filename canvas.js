@@ -181,7 +181,7 @@ function mutate(set) {
     generateChild();
 }
 
-//cross mutated parents genome and in their respectives slots and swap them 
+//cross mutated parents genome and in their respectives slots and swap them bugged
 function crossParents() {
     // on mute les parents
     mutate(set1);
