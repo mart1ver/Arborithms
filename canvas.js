@@ -184,8 +184,8 @@ function mutate(set) {
 //cross mutated parents genome and in their respectives slots and swap them 
 function crossParents() {
     // on mute les parents
-    //mutate(set1);
-    //mutate(set2);
+    mutate(set1);
+    mutate(set2);
     //on backup les adn
     let aold1 = set1;
     let aold2 = set2;
