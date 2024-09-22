@@ -190,19 +190,8 @@ function crossParents() {
     aold1 = set1;
     aold2 = set2;
     //on croise les genomes
-    set1.TxMut = aold2.TxMut;
-    set1.lt = aold2.lt;
-    set1.mnSpt = aold2.mnSpt;
-    set1.thk = aold2.thk;
-    set1.gtInitial = aold2.gtInitial;
-    set1.gtPerGen = aold2.gtPerGen;
-    set1.warping = aold2.warping;
-    set1.angDif = aold2.angDif;
-    set1.sEndMx = aold2.sEndMx;
-    set1.sMidMx = aold2.sMidMx;
-    set1.colorBase = aold2.colorBase;
 
-   
+
     set2.TxMut = aold1.TxMut;
     set2.lt = aold1.lt;
     set2.mnSpt = aold1.mnSpt;
@@ -215,6 +204,32 @@ function crossParents() {
     set2.sMidMx = aold1.sMidMx;
     set2.colorBase = aold1.colorBase;
 
+
+    set1.TxMut = aold2.TxMut;
+    set1.lt = aold2.lt;
+    set1.mnSpt = aold2.mnSpt;
+    set1.thk = aold2.thk;
+    set1.gtInitial = aold2.gtInitial;
+    set1.gtPerGen = aold2.gtPerGen;
+    set1.warping = aold2.warping;
+    set1.angDif = aold2.angDif;
+    set1.sEndMx = aold2.sEndMx;
+    set1.sMidMx = aold2.sMidMx;
+    set1.colorBase = aold2.colorBase;
+
+   /*
+    set2.TxMut = aold1.TxMut;
+    set2.lt = aold1.lt;
+    set2.mnSpt = aold1.mnSpt;
+    set2.thk = aold1.thk;
+    set2.gtInitial = aold1.gtInitial;
+    set2.gtPerGen = aold1.gtPerGen;
+    set2.warping = aold1.warping;
+    set2.angDif = aold1.angDif;
+    set2.sEndMx = aold1.sEndMx;
+    set2.sMidMx = aold1.sMidMx;
+    set2.colorBase = aold1.colorBase;
+*/
 
 
  
