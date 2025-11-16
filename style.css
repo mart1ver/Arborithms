@@ -66,6 +66,16 @@ body {
     max-width: 95vw;
 }
 
+/* Save card positioned top-right */
+.save-card {
+    position: absolute !important;
+    top: 20px;
+    right: 20px;
+    left: auto !important;
+    transform: none !important;
+    max-width: 280px;
+}
+
 /* Control cards */
 .control-card {
     background: rgba(255, 255, 255, 0.95);
@@ -75,6 +85,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     border: 2px solid rgba(76, 175, 80, 0.3);
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .control-card:hover {
@@ -83,14 +94,69 @@ body {
     border-color: rgba(76, 175, 80, 0.6);
 }
 
+/* Collapsed state */
+.control-card.collapsed .control-group,
+.control-card.collapsed .control-content {
+    display: none;
+}
+
+.control-card.collapsed {
+    padding: 10px 15px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
 .card-title {
     font-size: 14px;
     font-weight: 600;
     color: #2e7d32;
-    margin-bottom: 10px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
+    flex: 1;
+    margin: 0;
+}
+
+/* Toggle button */
+.toggle-btn {
+    background: rgba(76, 175, 80, 0.2);
+    color: #2e7d32;
+    border: 1px solid rgba(76, 175, 80, 0.4);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    line-height: 1;
+    margin: 0;
+    min-width: 28px;
+}
+
+.toggle-btn:hover {
+    background: rgba(76, 175, 80, 0.3);
+    border-color: rgba(76, 175, 80, 0.6);
+    transform: scale(1.1);
+}
+
+.toggle-btn:active {
+    transform: scale(0.95);
+}
+
+.control-content {
+    margin-top: 10px;
+}
+
+.collapsed .toggle-btn::before {
+    content: '▼';
+}
+
+.toggle-btn::before {
+    content: '▲';
 }
 
 /* Buttons */
