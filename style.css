@@ -74,6 +74,7 @@ body {
     left: auto !important;
     transform: none !important;
     max-width: 280px;
+    z-index: 15 !important;
 }
 
 /* Control cards */
