@@ -38,6 +38,13 @@ fetchFromTreesData() // load from json data
 performance.mark("10");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+
+// Store parent tree parameters to keep them stable during copulation
+let parentAngles = {
+    left: Math.PI / -2,
+    right: Math.PI / -2,
+    child: Math.PI / -2
+};
 const pcanvas = document.getElementById("particleCanvas");
 const pctx = pcanvas.getContext("2d");
 ctx.imageSmoothingEnabled = true;
@@ -162,7 +169,7 @@ function create_invisible_tree() {
 //cross parents genome and a bit of mutation to make a child in set3
 function copulate12() {
     set3 = copulate(set1, set2);
-    generateChild()
+    drawChildOnly()
 }
 
 
@@ -400,12 +407,32 @@ function generateChild() {
         document.getElementById("titleText").style.opacity = "0";
         a = false;
     }
+    // Generate new random angles for all trees
+    parentAngles.child = random(Math.PI / -2 - .3, Math.PI / -2 + .3);
+    parentAngles.left = random(Math.PI / -2 - .3, Math.PI / -2 + .3);
+    parentAngles.right = random(Math.PI / -2 - .3, Math.PI / -2 + .3);
+
     ctx.clearRect(0, 0, dim.x, dim.y);
     Planter.list = [];
-    new Planter(dim.x / 2, dim.y * 0.8, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set3)
-    new Planter(dim.x / 4, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set2)
-    new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
+    new Planter(dim.x / 2, dim.y * 0.8, parentAngles.child, set3)
+    new Planter(dim.x / 4, dim.y, parentAngles.left, set2)
+    new Planter((dim.x / 4) * 3, dim.y, parentAngles.right, set1)
+}
 
+// Redraw only the child tree, keeping parents unchanged
+function drawChildOnly() {
+    if (a) {
+        document.getElementById("titleText").style.opacity = "0";
+        a = false;
+    }
+    // Generate new angle only for child, keep parent angles
+    parentAngles.child = random(Math.PI / -2 - .3, Math.PI / -2 + .3);
+
+    ctx.clearRect(0, 0, dim.x, dim.y);
+    Planter.list = [];
+    new Planter(dim.x / 2, dim.y * 0.8, parentAngles.child, set3)
+    new Planter(dim.x / 4, dim.y, parentAngles.left, set2)
+    new Planter((dim.x / 4) * 3, dim.y, parentAngles.right, set1)
 }
 // Save a tree to JSON file with custom name
 function jsondump() {
