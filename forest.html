@@ -13,47 +13,67 @@
 <body>
     <div id="buttons">
         <!-- Left Tree Controls -->
-        <div class="control-card">
-            <div class="card-title">🌳 Left Parent</div>
-            <div class="control-group">
-                <input id="whichLeft" list="varietiesLeft" placeholder="Select variety...">
-                <div class="control-row">
-                    <button class="btn-load" onclick="loadInParentSlot(2)">📥 Load</button>
-                    <button class="btn-random" onclick="reset(2)">🎲 Random</button>
-                    <button class="btn-mutate" onclick="mutate(set2)">🧬 Mutate</button>
+        <div class="control-card" id="leftCard">
+            <div class="card-header">
+                <div class="card-title">🌳 Left Parent</div>
+                <button class="toggle-btn" onclick="toggleCard('leftCard')"></button>
+            </div>
+            <div class="control-content">
+                <div class="control-group">
+                    <input id="whichLeft" list="varietiesLeft" placeholder="Select variety...">
+                    <div class="control-row">
+                        <button class="btn-load" onclick="loadInParentSlot(2)">📥 Load</button>
+                        <button class="btn-random" onclick="reset(2)">🎲 Random</button>
+                        <button class="btn-mutate" onclick="mutate(set2)">🧬 Mutate</button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Breeding Controls -->
-        <div class="control-card">
-            <div class="card-title">🔬 Breeding Lab</div>
-            <div class="control-group">
-                <div class="control-row">
-                    <button onclick="loadLeft()">⬅️ Use Child</button>
-                    <button class="btn-copulate" onclick="copulate12()">💜 Copulate</button>
-                    <button onclick="loadRight()">Use Child ➡️</button>
+        <div class="control-card" id="breedingCard">
+            <div class="card-header">
+                <div class="card-title">🔬 Breeding Lab</div>
+                <button class="toggle-btn" onclick="toggleCard('breedingCard')"></button>
+            </div>
+            <div class="control-content">
+                <div class="control-group">
+                    <div class="control-row">
+                        <button onclick="loadLeft()">⬅️ Use Child</button>
+                        <button class="btn-copulate" onclick="copulate12()">💜 Copulate</button>
+                        <button onclick="loadRight()">Use Child ➡️</button>
+                    </div>
+                    <button onclick="generateChild()">🔄 Regrow Parents</button>
                 </div>
-                <button onclick="generateChild()">🔄 Regrow Parents</button>
             </div>
         </div>
 
         <!-- Right Tree Controls -->
-        <div class="control-card">
-            <div class="card-title">🌲 Right Parent</div>
-            <div class="control-group">
-                <input id="whichRight" list="varietiesRight" placeholder="Select variety...">
-                <div class="control-row">
-                    <button class="btn-mutate" onclick="mutate(set1)">🧬 Mutate</button>
-                    <button class="btn-random" onclick="reset(1)">🎲 Random</button>
-                    <button class="btn-load" onclick="loadInParentSlot(1)">📥 Load</button>
+        <div class="control-card" id="rightCard">
+            <div class="card-header">
+                <div class="card-title">🌲 Right Parent</div>
+                <button class="toggle-btn" onclick="toggleCard('rightCard')"></button>
+            </div>
+            <div class="control-content">
+                <div class="control-group">
+                    <input id="whichRight" list="varietiesRight" placeholder="Select variety...">
+                    <div class="control-row">
+                        <button class="btn-mutate" onclick="mutate(set1)">🧬 Mutate</button>
+                        <button class="btn-random" onclick="reset(1)">🎲 Random</button>
+                        <button class="btn-load" onclick="loadInParentSlot(1)">📥 Load</button>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Save Controls -->
-        <div class="control-card">
+    <!-- Save Controls - Positioned top-right -->
+    <div class="control-card save-card" id="saveCard">
+        <div class="card-header">
             <div class="card-title">💾 Save Tree</div>
+            <button class="toggle-btn" onclick="toggleCard('saveCard')"></button>
+        </div>
+        <div class="control-content">
             <div class="control-group">
                 <input id="treeName" type="text" placeholder="Enter tree name...">
                 <select id="treeToSave">

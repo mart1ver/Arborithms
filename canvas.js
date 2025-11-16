@@ -1,6 +1,15 @@
-/** 
+/**
  * @type {HTMLCanvasElement}
 */
+
+// Toggle card collapse/expand
+function toggleCard(cardId) {
+    const card = document.getElementById(cardId);
+    if (card) {
+        card.classList.toggle('collapsed');
+    }
+}
+
 fetchFromTreesData() // load from json data
 performance.mark("10");
 const canvas = document.getElementById("canvas");
