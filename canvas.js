@@ -10,6 +10,20 @@ function toggleCard(cardId) {
     }
 }
 
+// Toggle all cards at once
+function toggleAllCards() {
+    const cards = document.querySelectorAll('.control-card');
+    const allCollapsed = Array.from(cards).every(card => card.classList.contains('collapsed'));
+
+    cards.forEach(card => {
+        if (allCollapsed) {
+            card.classList.remove('collapsed');
+        } else {
+            card.classList.add('collapsed');
+        }
+    });
+}
+
 fetchFromTreesData() // load from json data
 performance.mark("10");
 const canvas = document.getElementById("canvas");

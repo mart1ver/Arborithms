@@ -53,6 +53,35 @@ body {
 }
 
 /* ===== NEW CONTROL PANEL DESIGN ===== */
+/* Global toggle button top-left */
+.global-toggle-btn {
+    position: absolute !important;
+    top: 20px;
+    left: 20px;
+    z-index: 15 !important;
+    background: linear-gradient(135deg, #673AB7 0%, #512DA8 100%) !important;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(103, 58, 183, 0.4);
+    transition: all 0.3s ease;
+}
+
+.global-toggle-btn:hover {
+    background: linear-gradient(135deg, #512DA8 0%, #4527A0 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(103, 58, 183, 0.5);
+}
+
+.global-toggle-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(103, 58, 183, 0.4);
+}
+
 #buttons {
     position: absolute;
     top: 20px;
@@ -74,6 +103,7 @@ body {
     left: auto !important;
     transform: none !important;
     max-width: 280px;
+    z-index: 15 !important;
 }
 
 /* Control cards */
@@ -289,6 +319,13 @@ select:focus {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .global-toggle-btn {
+        top: 10px;
+        left: 10px;
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
     #buttons {
         top: 10px;
         gap: 10px;
@@ -308,5 +345,10 @@ select:focus {
     select {
         width: 120px;
         font-size: 12px;
+    }
+
+    .save-card {
+        top: 10px;
+        right: 10px;
     }
 }
