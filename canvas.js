@@ -50,6 +50,13 @@ function create_random_tree() {
         lfSteps: randomInt(1, 5), // nombre d'etapes dans les feuilles
         colorBase: new Color(random(0, 256), random(0, 256), random(0, 256)),
         colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256)),
+        // New genes
+        asymmetry: random(-1, 1), // asymétrie gauche/droite (-1 = gauche, 1 = droite)
+        branchAngle: random(-Math.PI / 4, Math.PI / 4), // angle de base des branches
+        trunkTaper: random(0.7, 1.3), // vitesse d'amincissement du tronc
+        branchDensity: random(0.5, 2), // densité des branches
+        colorVariation: random(0, 30), // variation de couleur entre branches
+        leafCluster: randomInt(1, 5), // regroupement des feuilles
     };
     return a;
 }
@@ -77,6 +84,13 @@ function create_invisible_tree() {
         lfSteps: 0, // nombre d'etapes dans les feuilles
         colorBase: new Color(random(0, 256), random(0, 256), random(0, 256), 0),
         colorLeaves: new Color(random(0, 256), random(0, 256), random(0, 256), 0),
+        // New genes
+        asymmetry: 0,
+        branchAngle: 0,
+        trunkTaper: 1,
+        branchDensity: 1,
+        colorVariation: 0,
+        leafCluster: 1,
     };
     return a;
 }
@@ -108,6 +122,13 @@ function copulate(set1, set2) {
     lfGravity = (random(0, 1) > mutation) ? set2.lfGravity : random(-3, 3);
     lfThickness = (random(0, 1) > mutation) ? set2.lfThickness : random(0, 6);
     lfSteps = (random(0, 1) > mutation) ? set2.lfSteps : randomInt(1, 5);
+    // New genes
+    asymmetry = (random(0, 1) > mutation) ? set1.asymmetry : random(-1, 1);
+    branchAngle = (random(0, 1) > mutation) ? set1.branchAngle : random(-Math.PI / 4, Math.PI / 4);
+    trunkTaper = (random(0, 1) > mutation) ? set1.trunkTaper : random(0.7, 1.3);
+    branchDensity = (random(0, 1) > mutation) ? set1.branchDensity : random(0.5, 2);
+    colorVariation = (random(0, 1) > mutation) ? set1.colorVariation : random(0, 30);
+    leafCluster = (random(0, 1) > mutation) ? set2.leafCluster : randomInt(1, 5);
 
     return {
         // general
@@ -130,6 +151,13 @@ function copulate(set1, set2) {
         lfThickness: lfThickness,
         lfSteps: lfSteps,
         colorLeaves: colorLeaves,
+        // New genes
+        asymmetry: asymmetry,
+        branchAngle: branchAngle,
+        trunkTaper: trunkTaper,
+        branchDensity: branchDensity,
+        colorVariation: colorVariation,
+        leafCluster: leafCluster,
     };
 
 }
@@ -169,6 +197,13 @@ function mutate(set) {
     if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfGravity = set.lfGravity * 1.1 } else { set.lfGravity = set.lfGravity * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfThickness = set.lfThickness * 1.1 } else { set.lfThickness = set.lfThickness * 0.9 } };
     if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfSteps = set.lfSteps * 1.1 } else { set.lfSteps = set.lfSteps * 0.9 } };
+    // New genes mutations
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.asymmetry = set.asymmetry * 1.1 } else { set.asymmetry = set.asymmetry * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.branchAngle = set.branchAngle * 1.1 } else { set.branchAngle = set.branchAngle * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.trunkTaper = set.trunkTaper * 1.1 } else { set.trunkTaper = set.trunkTaper * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.branchDensity = set.branchDensity * 1.1 } else { set.branchDensity = set.branchDensity * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.colorVariation = set.colorVariation * 1.1 } else { set.colorVariation = set.colorVariation * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.leafCluster = Math.max(1, set.leafCluster * 1.1) } else { set.leafCluster = Math.max(1, set.leafCluster * 0.9) } };
     set.gen = set.gen + 1;
     generateChild();
 }
@@ -194,6 +229,12 @@ function crossParents() {
     set2.sEndMx = aold1.sEndMx;
     set2.sMidMx = aold1.sMidMx;
     set2.colorBase = aold1.colorBase;
+    set2.asymmetry = aold1.asymmetry;
+    set2.branchAngle = aold1.branchAngle;
+    set2.trunkTaper = aold1.trunkTaper;
+    set2.branchDensity = aold1.branchDensity;
+    set2.colorVariation = aold1.colorVariation;
+    set2.leafCluster = aold1.leafCluster;
 
     set1.TxMut = aold2.TxMut;
     set1.lt = aold2.lt;
@@ -206,6 +247,12 @@ function crossParents() {
     set1.sEndMx = aold2.sEndMx;
     set1.sMidMx = aold2.sMidMx;
     set1.colorBase = aold2.colorBase;
+    set1.asymmetry = aold2.asymmetry;
+    set1.branchAngle = aold2.branchAngle;
+    set1.trunkTaper = aold2.trunkTaper;
+    set1.branchDensity = aold2.branchDensity;
+    set1.colorVariation = aold2.colorVariation;
+    set1.leafCluster = aold2.leafCluster;
 
     //on incremente la generation dans les deux adn
     set1.gen = set1.gen + 1;
@@ -227,11 +274,12 @@ class Planter {
         this.splitTime = this.lT * random(this.stgs.mnSpT, (this.stgs.mxSpT ?? (this.stgs.mnSpT + .1)));
         this.thk = this.stgs.thk;
         this.gt = this.stgs.gtInitial;
-        this.color = this.stgs.colorBase.randomise(7).toCSS();
+        this.color = this.stgs.colorBase.randomise(7 + (this.stgs.colorVariation || 0)).toCSS();
         Planter.list.push(this);
     }
     update() {
         this.angle += random(-this.stgs.warping, this.stgs.warping) * growStepSize;
+        this.angle += (this.stgs.asymmetry || 0) * growStepSize * 0.1; // Asymmetry bias
         this.angle = rotateAngle(this.angle, Math.PI / -2, this.gt * growStepSize);
         this.fx += Math.cos(this.angle) * this.speed * growStepSize;
         this.fy += Math.sin(this.angle) * this.speed * growStepSize;
@@ -246,11 +294,11 @@ class Planter {
         ctx.fillStyle = "white";
         this.age += growStepSize;
         if (this.age > this.splitTime) {
-            this.split(0, this.stgs.sMidMx);
+            this.split(0, Math.floor(this.stgs.sMidMx * (this.stgs.branchDensity || 1)));
             this.splitTime += random(this.stgs.mnSpT, this.stgs.mxSpT ?? (this.stgs.mnSpT * 2));
         }
         if (this.age > this.lT) {
-            this.split(1, this.stgs.sEndMx);
+            this.split(1, Math.floor(this.stgs.sEndMx * (this.stgs.branchDensity || 1)));
             ctx.fillStyle = this.color;
             ctx.fillRect(this.x, this.y, 1, 1);
             this.enabled = false;
@@ -268,18 +316,19 @@ class Planter {
         if (r == 1) angDif = 0.1;
         if (this.gen == this.stgs.lfGen) {
             angDif = 3;
-            r = this.stgs.lfAmount;
+            r = Math.floor(this.stgs.lfAmount * (this.stgs.leafCluster || 1));
         }
 
         for (let i = 0; i < r; i++) {
-            let pla = new Planter(this.x, this.y, rotateAngle((this.angle + random(-angDif, angDif)), Math.PI / -2, .3), this.stgs);
-            pla.thk = Math.max(1, this.thk - 1);
+            let newAngle = this.angle + random(-angDif, angDif) + (this.stgs.branchAngle || 0);
+            let pla = new Planter(this.x, this.y, rotateAngle(newAngle, Math.PI / -2, .3), this.stgs);
+            pla.thk = Math.max(1, this.thk - (this.stgs.trunkTaper || 1));
             pla.gen = this.gen + randomInt(1, 1 + (this.stgs.skipGenMax ?? 1));
             pla.lT /= pla.gen;
             pla.splitTime /= pla.gen / pla.gen;
             pla.gt -= pla.gen * this.stgs.gtPerGen
             if (this.gen >= this.stgs.lfGen) {
-                pla.color = this.stgs.colorLeaves.randomise(20).toCSS();
+                pla.color = this.stgs.colorLeaves.randomise(20 + (this.stgs.colorVariation || 0)).toCSS();
                 pla.lT *= this.stgs.lfLength;
                 pla.thk = Math.max(1, this.stgs.lfThickness - (pla.gen - this.stgs.lfGen))
                 pla.gt = this.stgs.lfGravity;
