@@ -20,8 +20,15 @@
     <button id="jsondump" width="400px" onclick="loadLeft()">load in left</button>
     <button id="generate" width="400px" onclick="generateChild()">regrow parents</button>
     <button id="copulate" width="400px" onclick="copulate12()">copulate</button>
-    <button id="jsondump" width="400px" onclick="jsondump()">json dump</button>
     <button id="jsondump" width="400px" onclick="loadRight()">load in right</button>
+    ------------------------------------------------
+    <input id="treeName" placeholder="Tree name">
+    <select id="treeToSave">
+        <option value="1">Right (set1)</option>
+        <option value="2">Left (set2)</option>
+        <option value="3">Child (set3)</option>
+    </select>
+    <button id="saveButton" onclick="jsondump()">Save to JSON</button>
     ------------------------------------------------
     <button id="mutateRight" width="400px" onclick="mutate(set1)">mut</button>
     <button id="renewRight" width="400px" onclick="reset(1)">rnd</button>
