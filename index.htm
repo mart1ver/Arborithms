@@ -12,26 +12,56 @@
 
 <body>
     <div id="buttons">
-    <input id="whichLeft" list="varietiesLeft">
-    <button id="newplantLeft" width="400px" onclick="loadInParentSlot(2)">load</button>
-    <button id="mutateLeft" width="400px" onclick="mutate(set2)">mut</button>
-    ------------------------------------------------
-    <button id="jsondump" width="400px" onclick="loadLeft()">load in left</button>
-    <button id="generate" width="400px" onclick="generateChild()">regrow trees</button>
-    <button id="copulate" width="400px" onclick="copulate12()">copulate</button>
-    <button id="jsondump" width="400px" onclick="loadRight()">load in right</button>
-    ------------------------------------------------
-    <input id="treeName" placeholder="Tree name">
-    <select id="treeToSave">
-        <option value="1">Right (set1)</option>
-        <option value="2">Left (set2)</option>
-        <option value="3">Child (set3)</option>
-    </select>
-    <button id="saveButton" onclick="jsondump()">Save to JSON</button>
-    ------------------------------------------------
-    <button id="mutateRight" width="400px" onclick="mutate(set1)">mut</button>
-    <button id="newplantRight" width="400px" onclick="loadInParentSlot(1)">load</button>
-    <input id="whichRight" list="varietiesRight">
+        <!-- Left Tree Controls -->
+        <div class="control-card">
+            <div class="card-title">🌳 Left Parent</div>
+            <div class="control-group">
+                <input id="whichLeft" list="varietiesLeft" placeholder="Select variety...">
+                <div class="control-row">
+                    <button class="btn-load" onclick="loadInParentSlot(2)">📥 Load</button>
+                    <button class="btn-mutate" onclick="mutate(set2)">🧬 Mutate</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Breeding Controls -->
+        <div class="control-card">
+            <div class="card-title">🔬 Breeding Lab</div>
+            <div class="control-group">
+                <div class="control-row">
+                    <button onclick="loadLeft()">⬅️ Use Child</button>
+                    <button class="btn-copulate" onclick="copulate12()">💜 Copulate</button>
+                    <button onclick="loadRight()">Use Child ➡️</button>
+                </div>
+                <button onclick="generateChild()">🔄 Regrow Trees</button>
+            </div>
+        </div>
+
+        <!-- Right Tree Controls -->
+        <div class="control-card">
+            <div class="card-title">🌲 Right Parent</div>
+            <div class="control-group">
+                <input id="whichRight" list="varietiesRight" placeholder="Select variety...">
+                <div class="control-row">
+                    <button class="btn-mutate" onclick="mutate(set1)">🧬 Mutate</button>
+                    <button class="btn-load" onclick="loadInParentSlot(1)">📥 Load</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Save Controls -->
+        <div class="control-card">
+            <div class="card-title">💾 Save Tree</div>
+            <div class="control-group">
+                <input id="treeName" type="text" placeholder="Enter tree name...">
+                <select id="treeToSave">
+                    <option value="1">🌲 Right Parent</option>
+                    <option value="2">🌳 Left Parent</option>
+                    <option value="3">🌱 Child</option>
+                </select>
+                <button class="btn-save" onclick="jsondump()">💾 Save to JSON</button>
+            </div>
+        </div>
     </div>
 <br>
 
