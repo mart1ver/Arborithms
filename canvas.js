@@ -25,8 +25,39 @@ const lfGen = 7;
 const treeSettings = new Map();
 //planterStepsPerUpdate = variable qualite de l'animation 1 = fluide mais peur ramer sur de arbres complexes 
 let planterStepsPerUpdate = 3;
-//planterStepsElapsed = variable du compteur de steps de l'animation , doit etre set a 0 
+//planterStepsElapsed = variable du compteur de steps de l'animation , doit etre set a 0
 let planterStepsElapsed = 0;
+
+// Genetic algorithm utility functions
+function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+}
+
+// Gene constraints definition
+const GENE_CONSTRAINTS = {
+    TxMut: { min: 0.01, max: 0.15 },
+    lt: { min: 0.1, max: 2 },
+    mnSpt: { min: 0.1, max: 2 },
+    thk: { min: 0.5, max: 15 },
+    gtInitial: { min: -1, max: 2 },
+    gtPerGen: { min: 0, max: 1 },
+    warping: { min: 0, max: 20 },
+    angDif: { min: 0.1, max: 4 },
+    sEndMx: { min: 1, max: 15 },
+    sMidMx: { min: 0, max: 20 },
+    lfGen: { min: 1, max: 10 },
+    lfAmount: { min: 0, max: 15 },
+    lfLength: { min: 0, max: 5 },
+    lfGravity: { min: -5, max: 5 },
+    lfThickness: { min: 0, max: 10 },
+    lfSteps: { min: 0, max: 10 },
+    asymmetry: { min: -1, max: 1 },
+    branchAngle: { min: -Math.PI / 2, max: Math.PI / 2 },
+    trunkTaper: { min: 0.5, max: 2 },
+    branchDensity: { min: 0.1, max: 3 },
+    colorVariation: { min: 0, max: 50 },
+    leafCluster: { min: 1, max: 10 }
+};
 
 // create random trees for the first step in parents slots
 function create_random_tree() {
@@ -102,64 +133,43 @@ function copulate12() {
 }
 
 
-//cross parents genome and a bit of mutation to make a child in set3
+//cross parents genome with Mendelian inheritance and mutation
 function copulate(set1, set2) {
-    let mutation = 0.05;
-    lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
-    mnSpt = (random(0, 1) > mutation) ? set1.mnSpt : random(0.5, 1);
-    thk = (random(0, 1) > mutation) ? set1.thk : random(1, 7);
-    gtInitial = (random(0, 1) > mutation) ? set1.gtInitial : set2.gtInitial;
-    gtPerGen = (random(0, 1) > mutation) ? set1.gtPerGen : set2.gtPerGen;
-    warping = (random(0, 1) > mutation) ? set1.warping : random(0, 10);
-    angDif = (random(0, 1) > mutation) ? set1.angDif : random(0.5, 2);
-    sEndMx = (random(0, 1) > mutation) ? set1.sEndMx : randomInt(2, 7);
-    sMidMx = (random(0, 1) > mutation) ? set1.sMidMx : randomInt(1, 10);
-    colorBase = (random(0, 1) > mutation) ? set1.colorBase : new Color(random(0, 256), random(0, 256), random(0, 256));
-    colorLeaves = (random(0, 1) > mutation) ? set2.colorLeaves : new Color(random(0, 256), random(0, 256), random(0, 256));
-    lfGeno = (random(0, 1) > mutation) ? set2.lfGen : randomInt(2, 6);
-    lfAmount = (random(0, 1) > mutation) ? set2.lfAmount : randomInt(1, 7);
-    lfLength = (random(0, 1) > mutation) ? set2.lfLength : random(0, 2);
-    lfGravity = (random(0, 1) > mutation) ? set2.lfGravity : random(-3, 3);
-    lfThickness = (random(0, 1) > mutation) ? set2.lfThickness : random(0, 6);
-    lfSteps = (random(0, 1) > mutation) ? set2.lfSteps : randomInt(1, 5);
-    // New genes
-    asymmetry = (random(0, 1) > mutation) ? set1.asymmetry : random(-1, 1);
-    branchAngle = (random(0, 1) > mutation) ? set1.branchAngle : random(-Math.PI / 4, Math.PI / 4);
-    trunkTaper = (random(0, 1) > mutation) ? set1.trunkTaper : random(0.7, 1.3);
-    branchDensity = (random(0, 1) > mutation) ? set1.branchDensity : random(0.5, 2);
-    colorVariation = (random(0, 1) > mutation) ? set1.colorVariation : random(0, 30);
-    leafCluster = (random(0, 1) > mutation) ? set2.leafCluster : randomInt(1, 5);
+    let child = {};
+    let mutationRate = 0.05;
 
-    return {
-        // general
-        lt: lt,
-        // tronc et branche  --> set1
-        mnSpt: mnSpt,
-        thk: thk,
-        gtInitial: gtInitial,
-        gtPerGen: gtPerGen,
-        warping: warping,
-        angDif: angDif,
-        sEndMx: sEndMx,
-        sMidMx: sMidMx,
-        colorBase: colorBase,
-        // feuilles --> set2
-        lfGen: lfGeno,
-        lfAmount: lfAmount,
-        lfLength: lfLength,
-        lfGravity: lfGravity,
-        lfThickness: lfThickness,
-        lfSteps: lfSteps,
-        colorLeaves: colorLeaves,
-        // New genes
-        asymmetry: asymmetry,
-        branchAngle: branchAngle,
-        trunkTaper: trunkTaper,
-        branchDensity: branchDensity,
-        colorVariation: colorVariation,
-        leafCluster: leafCluster,
-    };
+    // Process all numeric genes
+    for (let gene in set1) {
+        if (gene === 'colorBase' || gene === 'colorLeaves') {
+            // Handle colors separately - choose from one parent randomly
+            child[gene] = random(0, 1) > 0.5 ? set1[gene] : set2[gene];
+        } else if (gene === 'gen' || gene === 'TxMut') {
+            // Special handling for metadata
+            if (gene === 'gen') {
+                child[gene] = Math.max(set1.gen, set2.gen);
+            } else if (gene === 'TxMut') {
+                // TxMut is inherited but clamped to prevent runaway
+                child[gene] = random(0, 1) > 0.5 ? set1[gene] : set2[gene];
+                child[gene] = clamp(child[gene], GENE_CONSTRAINTS.TxMut.min, GENE_CONSTRAINTS.TxMut.max);
+            }
+        } else if (typeof set1[gene] === 'number') {
+            // Mendelian inheritance: 50/50 from each parent
+            child[gene] = random(0, 1) > 0.5 ? set1[gene] : set2[gene];
 
+            // Apply mutation
+            if (random(0, 1) < mutationRate) {
+                let mutationFactor = random(0, 1) > 0.5 ? 1.1 : 0.9;
+                child[gene] *= mutationFactor;
+            }
+
+            // Apply constraints
+            if (GENE_CONSTRAINTS[gene]) {
+                child[gene] = clamp(child[gene], GENE_CONSTRAINTS[gene].min, GENE_CONSTRAINTS[gene].max);
+            }
+        }
+    }
+
+    return child;
 }
 //load child in parent slot left (set2)
 function loadLeft() {
@@ -175,88 +185,36 @@ function loadRight() {
     generateChild()
 }
 
-// mutate a set par derive
+// mutate a set with genetic drift and constraints
 function mutate(set) {
-    let mutation = set.TxMut;
-    console.log(mutation);
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.TxMut = set.TxMut * 1.1 } else { set.TxMut = set.TxMut * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lt = set.lt * 1.1 } else { set.lt = set.lt * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.mnSpt = set.mnSpt * 1.1 } else { set.mnSpt = set.mnSpt * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.thk = set.thk * 1.1 } else { set.thk = set.thk * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.gtInitial = set.gtInitial * 1.1 } else { set.gtInitial = set.gtInitial * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.gtPerGen = set.gtPerGen * 1.1 } else { set.gtPerGen = set.gtPerGen * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.warping = set.warping * 1.1 } else { set.warping = set.warping * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.angDif = set.angDif * 1.1 } else { set.angDif = set.angDif * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.sEndMx = set.sEndMx * 1.1 } else { set.sEndMx = set.sEndMx * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.sMidMx = set.sMidMx * 1.1 } else { set.sMidMx = set.sMidMx * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.colorBase = new Color(random(0, 256), random(0, 256), random(0, 256)) } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.colorLeaves = new Color(random(0, 256), random(0, 256), random(0, 256)) } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfGen = set.lfGen * 1.1 } else { set.lfGen = set.lfGen * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfAmount = set.lfAmount * 1.1 } else { set.lfAmount = set.lfAmount * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfLength = set.lfLength * 1.1 } else { set.lfLength = set.lfLength * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfGravity = set.lfGravity * 1.1 } else { set.lfGravity = set.lfGravity * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfThickness = set.lfThickness * 1.1 } else { set.lfThickness = set.lfThickness * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfSteps = set.lfSteps * 1.1 } else { set.lfSteps = set.lfSteps * 0.9 } };
-    // New genes mutations
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.asymmetry = set.asymmetry * 1.1 } else { set.asymmetry = set.asymmetry * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.branchAngle = set.branchAngle * 1.1 } else { set.branchAngle = set.branchAngle * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.trunkTaper = set.trunkTaper * 1.1 } else { set.trunkTaper = set.trunkTaper * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.branchDensity = set.branchDensity * 1.1 } else { set.branchDensity = set.branchDensity * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.colorVariation = set.colorVariation * 1.1 } else { set.colorVariation = set.colorVariation * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.leafCluster = Math.max(1, set.leafCluster * 1.1) } else { set.leafCluster = Math.max(1, set.leafCluster * 0.9) } };
+    let mutationRate = set.TxMut;
+    console.log("Mutation rate:", mutationRate);
+
+    // Mutate all numeric genes
+    for (let gene in set) {
+        if (gene === 'gen') {
+            // Don't mutate generation counter
+            continue;
+        } else if (gene === 'colorBase' || gene === 'colorLeaves') {
+            // Mutate colors completely
+            if (random(0, 1) < mutationRate && random(0, 1) > 0.5) {
+                set[gene] = new Color(random(0, 256), random(0, 256), random(0, 256));
+            }
+        } else if (typeof set[gene] === 'number') {
+            // Mutate numeric genes with +/-10%
+            if (random(0, 1) < mutationRate) {
+                let mutationFactor = random(0, 1) > 0.5 ? 1.1 : 0.9;
+                set[gene] *= mutationFactor;
+
+                // Apply constraints
+                if (GENE_CONSTRAINTS[gene]) {
+                    set[gene] = clamp(set[gene], GENE_CONSTRAINTS[gene].min, GENE_CONSTRAINTS[gene].max);
+                }
+            }
+        }
+    }
+
     set.gen = set.gen + 1;
-    generateChild();
-}
-
-//cross mutated parents genome and swap them
-function crossParents() {
-    // on mute les parents
-    mutate(set1);
-    mutate(set2);
-    //on backup les adn
-    let aold1 = set1;
-    let aold2 = set2;
-    //on croise les genomes
-
-    set2.TxMut = aold1.TxMut;
-    set2.lt = aold1.lt;
-    set2.mnSpt = aold1.mnSpt;
-    set2.thk = aold1.thk;
-    set2.gtInitial = aold1.gtInitial;
-    set2.gtPerGen = aold1.gtPerGen;
-    set2.warping = aold1.warping;
-    set2.angDif = aold1.angDif;
-    set2.sEndMx = aold1.sEndMx;
-    set2.sMidMx = aold1.sMidMx;
-    set2.colorBase = aold1.colorBase;
-    set2.asymmetry = aold1.asymmetry;
-    set2.branchAngle = aold1.branchAngle;
-    set2.trunkTaper = aold1.trunkTaper;
-    set2.branchDensity = aold1.branchDensity;
-    set2.colorVariation = aold1.colorVariation;
-    set2.leafCluster = aold1.leafCluster;
-
-    set1.TxMut = aold2.TxMut;
-    set1.lt = aold2.lt;
-    set1.mnSpt = aold2.mnSpt;
-    set1.thk = aold2.thk;
-    set1.gtInitial = aold2.gtInitial;
-    set1.gtPerGen = aold2.gtPerGen;
-    set1.warping = aold2.warping;
-    set1.angDif = aold2.angDif;
-    set1.sEndMx = aold2.sEndMx;
-    set1.sMidMx = aold2.sMidMx;
-    set1.colorBase = aold2.colorBase;
-    set1.asymmetry = aold2.asymmetry;
-    set1.branchAngle = aold2.branchAngle;
-    set1.trunkTaper = aold2.trunkTaper;
-    set1.branchDensity = aold2.branchDensity;
-    set1.colorVariation = aold2.colorVariation;
-    set1.leafCluster = aold2.leafCluster;
-
-    //on incremente la generation dans les deux adn
-    set1.gen = set1.gen + 1;
-    set2.gen = set2.gen + 1;
     generateChild();
 }
 
