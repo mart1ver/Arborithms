@@ -35,8 +35,6 @@ function create_random_tree() {
         gen: 0, // generation
         lt: random(0.3, 1), //taille maximale of the tree
         mnSpt: random(0.5, 1), // amount of small branches (inverted)
-        lt: random(0.3, 1), //taille maximale of the tree
-        mnSpt: random(0.5, 1), // amount of small branches (inverted)
         thk: random(1, 7), // thickness of the trunk
         gtInitial: 0.3, // gravity initial
         gtPerGen: 0.35, // gravité exercés sur les branches
@@ -83,20 +81,14 @@ function create_invisible_tree() {
     return a;
 }
 
-//cross parents genome and a bit of mutation in their respectives slots >>>>> candide
-
-
-
-//cross parents genome and a bit of mutation to make a child in set3 >>>>> candide
+//cross parents genome and a bit of mutation to make a child in set3
 function copulate12() {
-    //console.log("REPRODUCTION");
-    old1 = set1; old2 = set2; // useless in case of copulate??
-    set3 = copulate(old1, old2);
+    set3 = copulate(set1, set2);
     generateChild()
 }
 
 
-//cross parents genome and a bit of mutation to make a child in set3 >>>>> candide
+//cross parents genome and a bit of mutation to make a child in set3
 function copulate(set1, set2) {
     let mutation = 0.05;
     lt = (random(0, 1) > mutation) ? set1.lt : random(0.3, 1);
@@ -142,46 +134,46 @@ function copulate(set1, set2) {
 
 }
 //load child in parent slot left (set2)
-function loadLeft(set) {
+function loadLeft() {
     set2 = set3;
     set3 = create_invisible_tree();
     generateChild()
 }
 
 //load child in parent slot right (set1)
-function loadRight(set) {
+function loadRight() {
     set1 = set3;
     set3 = create_invisible_tree();
     generateChild()
 }
 
-// mutate a set par derive , reecrire la partie couleurs
+// mutate a set par derive
 function mutate(set) {
     let mutation = set.TxMut;
     console.log(mutation);
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.TxMut = set.TxMut * 1.1 } else { set.TxMut = set.TxMut * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lt = set.lt * 1.1 } else { set.lt = set.lt * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.mnSpt = set.mnSpt * 1.1 } else { set.mnSpt = set.mnSpt * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.thk = set.thk * 1.1 } else { set.thk = set.thk * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.gtInitial = set.gtInitial * 1.1 } else { set.gtInitial = set.gtInitial * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.gtPerGen = set.gtPerGen * 1.1 } else { set.gtPerGen = set.gtPerGen * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.warping = set.warping * 1.1 } else { set.warping = set.warping * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.angDif = set.angDif * 1.1 } else { set.angDif = set.angDif * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.sEndMx = set.sEndMx * 1.1 } else { set.sEndMx = set.sEndMx * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.sMidMx = set.sMidMx * 1.1 } else { set.sMidMx = set.sMidMx * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.colorBase = new Color(random(0, 256), random(0, 256), random(0, 256)) } };//to be revisited
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.colorLeaves = new Color(random(0, 256), random(0, 256), random(0, 256)) } };//to be revisited
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfGen = set.lfGen * 1.1 } else { set.lfGen = set.lfGen * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfAmount = set.lfAmount * 1.1 } else { set.lfAmount = set.lfAmount * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfLength = set.lfLength * 1.1 } else { set.lfLength = set.lfLength * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfGravity = set.lfGravity * 1.1 } else { set.lfGravity = set.lfGravity * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfThickness = set.lfThickness * 1.1 } else { set.lfThickness = set.lfThickness * 0.9 } };
-    if (random(0, 1) < mutation) { if (random(0, 1) > 0, 5) { set.lfSteps = set.lfSteps * 1.1 } else { set.lfSteps = set.lfSteps * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.TxMut = set.TxMut * 1.1 } else { set.TxMut = set.TxMut * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lt = set.lt * 1.1 } else { set.lt = set.lt * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.mnSpt = set.mnSpt * 1.1 } else { set.mnSpt = set.mnSpt * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.thk = set.thk * 1.1 } else { set.thk = set.thk * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.gtInitial = set.gtInitial * 1.1 } else { set.gtInitial = set.gtInitial * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.gtPerGen = set.gtPerGen * 1.1 } else { set.gtPerGen = set.gtPerGen * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.warping = set.warping * 1.1 } else { set.warping = set.warping * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.angDif = set.angDif * 1.1 } else { set.angDif = set.angDif * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.sEndMx = set.sEndMx * 1.1 } else { set.sEndMx = set.sEndMx * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.sMidMx = set.sMidMx * 1.1 } else { set.sMidMx = set.sMidMx * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.colorBase = new Color(random(0, 256), random(0, 256), random(0, 256)) } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.colorLeaves = new Color(random(0, 256), random(0, 256), random(0, 256)) } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfGen = set.lfGen * 1.1 } else { set.lfGen = set.lfGen * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfAmount = set.lfAmount * 1.1 } else { set.lfAmount = set.lfAmount * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfLength = set.lfLength * 1.1 } else { set.lfLength = set.lfLength * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfGravity = set.lfGravity * 1.1 } else { set.lfGravity = set.lfGravity * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfThickness = set.lfThickness * 1.1 } else { set.lfThickness = set.lfThickness * 0.9 } };
+    if (random(0, 1) < mutation) { if (random(0, 1) > 0.5) { set.lfSteps = set.lfSteps * 1.1 } else { set.lfSteps = set.lfSteps * 0.9 } };
     set.gen = set.gen + 1;
     generateChild();
 }
 
-//cross mutated parents genome and in their respectives slots and swap them bugged
+//cross mutated parents genome and swap them
 function crossParents() {
     // on mute les parents
     mutate(set1);
@@ -190,7 +182,6 @@ function crossParents() {
     let aold1 = set1;
     let aold2 = set2;
     //on croise les genomes
-
 
     set2.TxMut = aold1.TxMut;
     set2.lt = aold1.lt;
@@ -204,7 +195,6 @@ function crossParents() {
     set2.sMidMx = aold1.sMidMx;
     set2.colorBase = aold1.colorBase;
 
-
     set1.TxMut = aold2.TxMut;
     set1.lt = aold2.lt;
     set1.mnSpt = aold2.mnSpt;
@@ -217,33 +207,9 @@ function crossParents() {
     set1.sMidMx = aold2.sMidMx;
     set1.colorBase = aold2.colorBase;
 
-    /*
-     set2.TxMut = aold1.TxMut;
-     set2.lt = aold1.lt;
-     set2.mnSpt = aold1.mnSpt;
-     set2.thk = aold1.thk;
-     set2.gtInitial = aold1.gtInitial;
-     set2.gtPerGen = aold1.gtPerGen;
-     set2.warping = aold1.warping;
-     set2.angDif = aold1.angDif;
-     set2.sEndMx = aold1.sEndMx;
-     set2.sMidMx = aold1.sMidMx;
-     set2.colorBase = aold1.colorBase;
- */
-
-
-
-
-
     //on incremente la generation dans les deux adn
     set1.gen = set1.gen + 1;
     set2.gen = set2.gen + 1;
-    //on backup les adn
-    //set1Old = set1;
-    //set2Old = set2;
-    //on swap les adn
-    // set2 = set1Old;
-    // set1 = set2Old;
     generateChild();
 }
 
@@ -252,11 +218,11 @@ class Planter {
     age = 0;
     gen = 1;
     enabled = true;
-    constructor(x, y, angle = random(0, Math.PI * 2), stgs = treeSettings.values().next()) {
+    constructor(x, y, angle = random(0, Math.PI * 2), stgs = null) {
         this.fx = x;
         this.fy = y;
         this.angle = angle;
-        this.stgs = stgs;
+        this.stgs = stgs || set1;
         this.lT = this.stgs.lt * random(.5, 1.5);
         this.splitTime = this.lT * random(this.stgs.mnSpT, (this.stgs.mxSpT ?? (this.stgs.mnSpT + .1)));
         this.thk = this.stgs.thk;
@@ -401,20 +367,21 @@ function generateChild() {
     new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
 
 }
-// to export desired tree to file in view of integrating it in the main json file >>>>> broken
+// to export desired tree to file in view of integrating it in the main json file
 function jsondump() {
     let tree = document.getElementById("which").value;
 
     if (tree) {
-        let set = (eval("set" + tree));
-        treeSettings.set(tree, set);
+        let set = window["set" + tree];
+        if (set) {
+            treeSettings.set(tree, set);
+        }
     }
-
 
     let myObj = Object.fromEntries(treeSettings);
     JSONToFile(myObj, "Trees.json");
 }
-// to export desired tree to file in view of integrating it in the main json file >>>>> broken
+
 const JSONToFile = (obj, filename) => {
     const blob = new Blob([JSON.stringify(obj, null, 2)], {
         type: 'application/json',
@@ -431,11 +398,21 @@ function loadInParentSlot(n) {
 
     if (n == '1') {
         let tree = document.getElementById("whichRight").value;
-        set1 = treeSettings.get(tree);
+        let treeData = treeSettings.get(tree);
+        if (treeData) {
+            set1 = treeData;
+        } else {
+            console.warn("Tree not found:", tree);
+        }
     }
     if (n == '2') {
         let tree = document.getElementById("whichLeft").value;
-        set2 = treeSettings.get(tree);
+        let treeData = treeSettings.get(tree);
+        if (treeData) {
+            set2 = treeData;
+        } else {
+            console.warn("Tree not found:", tree);
+        }
     }
     generateChild();
 }
@@ -454,13 +431,6 @@ function reset(n) {
     generateChild()
 }
 
-let pixelData = Array.from(Array(dim.x), () => new Array(dim.y))
-for (let x = 0; x < dim.x; x++) {
-    for (let y = 0; y < dim.y; y++) {
-        pixelData[x][y] = { value: 0, newValue: 0 };
-    }
-}
-pixelData[Math.floor(dim.x / 2)][Math.floor(dim.y / 2)].newValue = 254;
 let newTime = Date.now();
 let oldTime = Date.now();
 window.requestAnimationFrame(update);
@@ -532,5 +502,8 @@ function fetchFromTreesData() {
                 treeSettings.set(i, setx);
             }
         }
+    }).catch(error => {
+        console.warn("Could not load Trees.json (this is normal when opening HTML files directly):", error.message);
+        console.log("Using default random trees. To use saved trees, please run a local web server.");
     })
 }
