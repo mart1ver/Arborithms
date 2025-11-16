@@ -35,7 +35,7 @@ function clamp(value, min, max) {
 
 // Gene constraints definition
 const GENE_CONSTRAINTS = {
-    TxMut: { min: 0.01, max: 0.15 },
+    TxMut: { min: 0.01, max: 20 },
     lt: { min: 0.1, max: 2 },
     mnSpt: { min: 0.1, max: 2 },
     thk: { min: 0.5, max: 15 },
