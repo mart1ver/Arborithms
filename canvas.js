@@ -13,6 +13,7 @@ function toggleCard(cardId) {
 // Toggle all cards at once
 function toggleAllCards() {
     const cards = document.querySelectorAll('.control-card');
+    const toggleBtn = document.querySelector('.global-toggle-btn');
     const allCollapsed = Array.from(cards).every(card => card.classList.contains('collapsed'));
 
     cards.forEach(card => {
@@ -22,6 +23,15 @@ function toggleAllCards() {
             card.classList.add('collapsed');
         }
     });
+
+    // Update button arrow
+    if (toggleBtn) {
+        if (allCollapsed) {
+            toggleBtn.classList.remove('all-collapsed');
+        } else {
+            toggleBtn.classList.add('all-collapsed');
+        }
+    }
 }
 
 fetchFromTreesData() // load from json data
