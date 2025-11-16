@@ -218,11 +218,11 @@ class Planter {
     age = 0;
     gen = 1;
     enabled = true;
-    constructor(x, y, angle = random(0, Math.PI * 2), stgs = treeSettings.values().next()) {
+    constructor(x, y, angle = random(0, Math.PI * 2), stgs = null) {
         this.fx = x;
         this.fy = y;
         this.angle = angle;
-        this.stgs = stgs;
+        this.stgs = stgs || set1;
         this.lT = this.stgs.lt * random(.5, 1.5);
         this.splitTime = this.lT * random(this.stgs.mnSpT, (this.stgs.mxSpT ?? (this.stgs.mnSpT + .1)));
         this.thk = this.stgs.thk;
@@ -398,11 +398,21 @@ function loadInParentSlot(n) {
 
     if (n == '1') {
         let tree = document.getElementById("whichRight").value;
-        set1 = treeSettings.get(tree);
+        let treeData = treeSettings.get(tree);
+        if (treeData) {
+            set1 = treeData;
+        } else {
+            console.warn("Tree not found:", tree);
+        }
     }
     if (n == '2') {
         let tree = document.getElementById("whichLeft").value;
-        set2 = treeSettings.get(tree);
+        let treeData = treeSettings.get(tree);
+        if (treeData) {
+            set2 = treeData;
+        } else {
+            console.warn("Tree not found:", tree);
+        }
     }
     generateChild();
 }
@@ -492,5 +502,8 @@ function fetchFromTreesData() {
                 treeSettings.set(i, setx);
             }
         }
+    }).catch(error => {
+        console.warn("Could not load Trees.json (this is normal when opening HTML files directly):", error.message);
+        console.log("Using default random trees. To use saved trees, please run a local web server.");
     })
 }
