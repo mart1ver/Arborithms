@@ -35,7 +35,7 @@ function clamp(value, min, max) {
 
 // Gene constraints definition
 const GENE_CONSTRAINTS = {
-    TxMut: { min: 0.01, max: 0.15 },
+    TxMut: { min: 0.01, max: 20 },
     lt: { min: 0.1, max: 2 },
     mnSpt: { min: 0.1, max: 2 },
     thk: { min: 0.5, max: 15 },
@@ -374,19 +374,37 @@ function generateChild() {
     new Planter((dim.x / 4) * 3, dim.y, random(Math.PI / -2 - .3, Math.PI / -2 + .3), set1)
 
 }
-// to export desired tree to file in view of integrating it in the main json file
+// Save a tree to JSON file with custom name
 function jsondump() {
-    let tree = document.getElementById("which").value;
+    let treeName = document.getElementById("treeName")?.value;
+    let treeToSave = document.getElementById("treeToSave")?.value;
 
-    if (tree) {
-        let set = window["set" + tree];
-        if (set) {
-            treeSettings.set(tree, set);
-        }
+    if (!treeName) {
+        alert("Please enter a tree name!");
+        return;
     }
 
+    if (!treeToSave) {
+        alert("Please select which tree to save!");
+        return;
+    }
+
+    // Get the selected tree
+    let selectedSet = window["set" + treeToSave];
+    if (!selectedSet) {
+        alert("Selected tree not found!");
+        return;
+    }
+
+    // Add to treeSettings
+    treeSettings.set(treeName, selectedSet);
+
+    // Export all trees to JSON
     let myObj = Object.fromEntries(treeSettings);
-    JSONToFile(myObj, "Trees.json");
+    JSONToFile(myObj, "Trees");
+
+    console.log(`Tree "${treeName}" saved successfully!`);
+    alert(`Tree "${treeName}" saved! Download the JSON file and add it to your repository.`);
 }
 
 const JSONToFile = (obj, filename) => {
