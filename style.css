@@ -6,12 +6,11 @@ body {
     overflow: hidden;
     margin: 0;
     padding: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
-
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .canvas {
@@ -19,6 +18,7 @@ body {
     position: absolute;
     width: 100vw;
     bottom: 0;
+    z-index: 1;
 }
 
 #titleText {
@@ -32,6 +32,9 @@ body {
     font-weight: 100;
     letter-spacing: .5em;
     animation: stretch 7s infinite alternate ease-in-out;
+    z-index: 2;
+    position: relative;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
 }
 
 @keyframes stretch {
@@ -41,7 +44,7 @@ body {
 
 #bg {
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     background: linear-gradient(#283119, #634747);
     filter: hue-rotate(120deg);
     transition: filter 2s;
@@ -49,8 +52,195 @@ body {
     width: 100vw;
 }
 
+/* ===== NEW CONTROL PANEL DESIGN ===== */
 #buttons {
     position: absolute;
-    top:0; left:0;
-    z-index: 7;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 95vw;
+}
+
+/* Control cards */
+.control-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(76, 175, 80, 0.3);
+    transition: all 0.3s ease;
+}
+
+.control-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    border-color: rgba(76, 175, 80, 0.6);
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+button {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 3px;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Special button styles */
+.btn-mutate {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+}
+
+.btn-mutate:hover {
+    background: linear-gradient(135deg, #F57C00 0%, #E65100 100%);
+}
+
+.btn-copulate {
+    background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+}
+
+.btn-copulate:hover {
+    background: linear-gradient(135deg, #7B1FA2 0%, #6A1B9A 100%);
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+}
+
+.btn-save:hover {
+    background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+}
+
+.btn-random {
+    background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%);
+}
+
+.btn-random:hover {
+    background: linear-gradient(135deg, #D32F2F 0%, #C62828 100%);
+}
+
+.btn-load {
+    background: linear-gradient(135deg, #607D8B 0%, #455A64 100%);
+}
+
+.btn-load:hover {
+    background: linear-gradient(135deg, #455A64 0%, #37474F 100%);
+}
+
+/* Input fields */
+input[type="text"],
+input[list] {
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    background: white;
+    width: 150px;
+}
+
+input[type="text"]:focus,
+input[list]:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Select dropdown */
+select {
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 13px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* Control groups */
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-row {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Emoji icons for buttons */
+.btn-icon {
+    margin-right: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #buttons {
+        top: 10px;
+        gap: 10px;
+    }
+
+    .control-card {
+        padding: 10px;
+    }
+
+    button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    input[type="text"],
+    input[list],
+    select {
+        width: 120px;
+        font-size: 12px;
+    }
 }
