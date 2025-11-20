@@ -732,9 +732,7 @@ function initializeTooltips() {
 }
 
 // Initialize tooltips when page is fully loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeTooltips);
-} else {
-    // DOM is already ready
+window.addEventListener('load', function() {
+    console.log('Window loaded, initializing tooltips...');
     initializeTooltips();
-}
+});
