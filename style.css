@@ -331,35 +331,142 @@ select:focus {
 /* Responsive */
 @media (max-width: 768px) {
     .global-toggle-btn {
-        top: 10px;
-        left: 10px;
-        padding: 8px 14px;
-        font-size: 12px;
+        top: 8px;
+        left: 8px;
+        padding: 6px 10px;
+        font-size: 16px;
+        min-width: 38px;
     }
 
     #buttons {
-        top: 10px;
-        gap: 10px;
+        top: 8px;
+        gap: 8px;
+        max-width: 98vw;
     }
 
     .control-card {
-        padding: 10px;
+        padding: 8px;
+        border-radius: 8px;
+        border-width: 1.5px;
+    }
+
+    .control-card:hover {
+        transform: none;
+    }
+
+    .control-card.collapsed {
+        padding: 6px 10px;
+    }
+
+    .card-title {
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .toggle-btn {
+        padding: 3px 6px;
+        font-size: 14px;
+        min-width: 24px;
     }
 
     button {
-        padding: 6px 12px;
-        font-size: 12px;
+        padding: 6px 10px;
+        font-size: 11px;
+        margin: 2px;
+        border-radius: 5px;
     }
 
     input[type="text"],
     input[list],
     select {
-        width: 120px;
-        font-size: 12px;
+        width: 100px;
+        font-size: 11px;
+        padding: 6px 8px;
+    }
+
+    .control-group {
+        gap: 6px;
+    }
+
+    .control-row {
+        gap: 4px;
     }
 
     .save-card {
-        top: 10px;
-        right: 10px;
+        top: 8px;
+        right: 8px;
+        max-width: 200px;
+    }
+
+    .btn-icon {
+        margin-right: 2px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .global-toggle-btn {
+        top: 5px;
+        left: 5px;
+        padding: 5px 8px;
+        font-size: 14px;
+        min-width: 32px;
+    }
+
+    #buttons {
+        top: 5px;
+        gap: 5px;
+    }
+
+    .control-card {
+        padding: 6px;
+        border-radius: 6px;
+    }
+
+    .control-card.collapsed {
+        padding: 5px 8px;
+    }
+
+    .card-title {
+        font-size: 11px;
+        letter-spacing: 0.3px;
+    }
+
+    .toggle-btn {
+        padding: 2px 5px;
+        font-size: 12px;
+        min-width: 22px;
+    }
+
+    button {
+        padding: 5px 8px;
+        font-size: 10px;
+        margin: 1px;
+    }
+
+    input[type="text"],
+    input[list],
+    select {
+        width: 85px;
+        font-size: 10px;
+        padding: 5px 6px;
+    }
+
+    .control-group {
+        gap: 5px;
+    }
+
+    .control-row {
+        gap: 3px;
+    }
+
+    .save-card {
+        top: 5px;
+        right: 5px;
+        max-width: 170px;
+    }
+
+    #titleText {
+        font-size: calc(max(2vw, min(6vw, 2.5em)));
     }
 }
