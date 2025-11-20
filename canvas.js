@@ -592,3 +592,114 @@ function fetchFromTreesData() {
         console.log("Using default random trees. To use saved trees, please run a local web server.");
     })
 }
+
+// ===== TREE DNA TOOLTIP SYSTEM =====
+const tooltip = document.getElementById('treeDnaTooltip');
+const tooltipTitle = document.getElementById('tooltipTitle');
+const tooltipContent = document.getElementById('tooltipContent');
+
+// Gene display names for better readability
+const geneDisplayNames = {
+    TxMut: 'Mutation Rate',
+    gen: 'Generation',
+    lt: 'Tree Size',
+    mnSpt: 'Branch Density',
+    thk: 'Trunk Thickness',
+    gtInitial: 'Initial Gravity',
+    gtPerGen: 'Gravity per Gen',
+    warping: 'Trunk Curvature',
+    lfGen: 'Leaf Generation',
+    angDif: 'Branch Angle Var',
+    lfAmount: 'Leaf Count',
+    lfLength: 'Leaf Length',
+    lfGravity: 'Leaf Gravity',
+    lfThickness: 'Leaf Thickness',
+    sEndMx: 'End Branches',
+    sMidMx: 'Mid Branches',
+    lfSteps: 'Leaf Steps',
+    asymmetry: 'Asymmetry',
+    branchAngle: 'Branch Base Angle',
+    trunkTaper: 'Trunk Taper',
+    branchDensity: 'Branch Density',
+    colorVariation: 'Color Variation',
+    leafCluster: 'Leaf Clustering'
+};
+
+// Format gene values for display
+function formatGeneValue(key, value) {
+    if (key === 'colorBase' || key === 'colorLeaves') {
+        return `rgb(${Math.round(value.r)}, ${Math.round(value.g)}, ${Math.round(value.b)})`;
+    } else if (typeof value === 'number') {
+        return value.toFixed(2);
+    }
+    return value;
+}
+
+// Determine which tree is being hovered over
+function getHoveredTree(mouseX) {
+    const canvasRect = canvas.getBoundingClientRect();
+    const relativeX = mouseX / canvasRect.width;
+
+    // Left parent: roughly 0-0.4
+    if (relativeX < 0.4) {
+        return { tree: set2, name: '🌳 Left Parent', hasTree: set2.thk > 0 };
+    }
+    // Right parent: roughly 0.6-1
+    else if (relativeX > 0.6) {
+        return { tree: set1, name: '🌲 Right Parent', hasTree: set1.thk > 0 };
+    }
+    // Child: roughly 0.4-0.6
+    else {
+        return { tree: set3, name: '🌱 Child', hasTree: set3.thk > 0 };
+    }
+}
+
+// Show tooltip with tree DNA
+function showTreeTooltip(tree, treeName, mouseX, mouseY) {
+    if (!tree) return;
+
+    // Update title
+    tooltipTitle.textContent = treeName;
+
+    // Build gene list
+    let html = '';
+    for (let gene in tree) {
+        const displayName = geneDisplayNames[gene] || gene;
+        const value = formatGeneValue(gene, tree[gene]);
+
+        html += `<span class="gene-name">${displayName}:</span>`;
+        html += `<span class="gene-value">${value}</span>`;
+    }
+
+    tooltipContent.innerHTML = html;
+
+    // Position tooltip near mouse
+    const offsetX = 20;
+    const offsetY = 20;
+    tooltip.style.left = mouseX + offsetX + 'px';
+    tooltip.style.top = mouseY + offsetY + 'px';
+
+    // Show tooltip
+    tooltip.classList.add('visible');
+}
+
+// Hide tooltip
+function hideTreeTooltip() {
+    tooltip.classList.remove('visible');
+}
+
+// Mouse move handler for canvas
+canvas.addEventListener('mousemove', (e) => {
+    const treeInfo = getHoveredTree(e.clientX);
+
+    if (treeInfo.hasTree) {
+        showTreeTooltip(treeInfo.tree, treeInfo.name, e.clientX, e.clientY);
+    } else {
+        hideTreeTooltip();
+    }
+});
+
+// Hide tooltip when mouse leaves canvas
+canvas.addEventListener('mouseleave', () => {
+    hideTreeTooltip();
+});
