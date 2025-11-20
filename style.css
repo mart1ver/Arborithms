@@ -328,6 +328,60 @@ select:focus {
     margin-right: 4px;
 }
 
+/* Tree DNA Tooltip */
+.tree-tooltip {
+    position: fixed;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    pointer-events: none;
+    z-index: 1000;
+    max-width: 350px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(76, 175, 80, 0.5);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.tree-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tree-tooltip h3 {
+    margin: 0 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(76, 175, 80, 0.6);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #4CAF50;
+}
+
+.tree-tooltip #tooltipContent {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 12px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.tree-tooltip .gene-name {
+    color: #9E9E9E;
+    font-weight: 500;
+}
+
+.tree-tooltip .gene-value {
+    color: #E0E0E0;
+    text-align: right;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .global-toggle-btn {
@@ -401,6 +455,22 @@ select:focus {
     .btn-icon {
         margin-right: 2px;
     }
+
+    .tree-tooltip {
+        max-width: 250px;
+        padding: 10px 15px;
+        font-size: 11px;
+    }
+
+    .tree-tooltip h3 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .tree-tooltip #tooltipContent {
+        font-size: 10px;
+        gap: 4px 8px;
+    }
 }
 
 /* Extra small screens */
@@ -468,5 +538,21 @@ select:focus {
 
     #titleText {
         font-size: calc(max(2vw, min(6vw, 2.5em)));
+    }
+
+    .tree-tooltip {
+        max-width: 200px;
+        padding: 8px 12px;
+        font-size: 10px;
+    }
+
+    .tree-tooltip h3 {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .tree-tooltip #tooltipContent {
+        font-size: 9px;
+        gap: 3px 6px;
     }
 }
