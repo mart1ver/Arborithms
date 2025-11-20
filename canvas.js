@@ -594,10 +594,6 @@ function fetchFromTreesData() {
 }
 
 // ===== TREE DNA TOOLTIP SYSTEM =====
-const tooltip = document.getElementById('treeDnaTooltip');
-const tooltipTitle = document.getElementById('tooltipTitle');
-const tooltipContent = document.getElementById('tooltipContent');
-
 // Gene display names for better readability
 const geneDisplayNames = {
     TxMut: 'Mutation Rate',
@@ -654,52 +650,70 @@ function getHoveredTree(mouseX) {
     }
 }
 
-// Show tooltip with tree DNA
-function showTreeTooltip(tree, treeName, mouseX, mouseY) {
-    if (!tree) return;
+// Initialize tooltip system
+function initializeTooltips() {
+    const tooltip = document.getElementById('treeDnaTooltip');
+    const tooltipTitle = document.getElementById('tooltipTitle');
+    const tooltipContent = document.getElementById('tooltipContent');
 
-    // Update title
-    tooltipTitle.textContent = treeName;
-
-    // Build gene list
-    let html = '';
-    for (let gene in tree) {
-        const displayName = geneDisplayNames[gene] || gene;
-        const value = formatGeneValue(gene, tree[gene]);
-
-        html += `<span class="gene-name">${displayName}:</span>`;
-        html += `<span class="gene-value">${value}</span>`;
+    // Check if elements exist
+    if (!tooltip || !tooltipTitle || !tooltipContent) {
+        console.error('Tooltip elements not found');
+        return;
     }
 
-    tooltipContent.innerHTML = html;
+    // Show tooltip with tree DNA
+    function showTreeTooltip(tree, treeName, mouseX, mouseY) {
+        if (!tree) return;
 
-    // Position tooltip near mouse
-    const offsetX = 20;
-    const offsetY = 20;
-    tooltip.style.left = mouseX + offsetX + 'px';
-    tooltip.style.top = mouseY + offsetY + 'px';
+        // Update title
+        tooltipTitle.textContent = treeName;
 
-    // Show tooltip
-    tooltip.classList.add('visible');
-}
+        // Build gene list
+        let html = '';
+        for (let gene in tree) {
+            const displayName = geneDisplayNames[gene] || gene;
+            const value = formatGeneValue(gene, tree[gene]);
 
-// Hide tooltip
-function hideTreeTooltip() {
-    tooltip.classList.remove('visible');
-}
+            html += `<span class="gene-name">${displayName}:</span>`;
+            html += `<span class="gene-value">${value}</span>`;
+        }
 
-// Mouse move handler for canvas
-canvas.addEventListener('mousemove', (e) => {
-    const treeInfo = getHoveredTree(e.clientX);
+        tooltipContent.innerHTML = html;
 
-    if (treeInfo.hasTree) {
-        showTreeTooltip(treeInfo.tree, treeInfo.name, e.clientX, e.clientY);
-    } else {
+        // Position tooltip near mouse
+        const offsetX = 20;
+        const offsetY = 20;
+        tooltip.style.left = mouseX + offsetX + 'px';
+        tooltip.style.top = mouseY + offsetY + 'px';
+
+        // Show tooltip
+        tooltip.classList.add('visible');
+    }
+
+    // Hide tooltip
+    function hideTreeTooltip() {
+        tooltip.classList.remove('visible');
+    }
+
+    // Mouse move handler for canvas
+    canvas.addEventListener('mousemove', (e) => {
+        const treeInfo = getHoveredTree(e.clientX);
+
+        if (treeInfo.hasTree) {
+            showTreeTooltip(treeInfo.tree, treeInfo.name, e.clientX, e.clientY);
+        } else {
+            hideTreeTooltip();
+        }
+    });
+
+    // Hide tooltip when mouse leaves canvas
+    canvas.addEventListener('mouseleave', () => {
         hideTreeTooltip();
-    }
-});
+    });
 
-// Hide tooltip when mouse leaves canvas
-canvas.addEventListener('mouseleave', () => {
-    hideTreeTooltip();
-});
+    console.log('Tree DNA tooltip system initialized');
+}
+
+// Initialize tooltips after a short delay to ensure DOM is ready
+setTimeout(initializeTooltips, 100);
