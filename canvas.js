@@ -652,13 +652,29 @@ function getHoveredTree(mouseX) {
 
 // Initialize tooltip system
 function initializeTooltips() {
+    console.log('Attempting to initialize tooltips...');
+    console.log('Canvas element:', canvas);
+    console.log('set1:', set1);
+    console.log('set2:', set2);
+    console.log('set3:', set3);
+
     const tooltip = document.getElementById('treeDnaTooltip');
     const tooltipTitle = document.getElementById('tooltipTitle');
     const tooltipContent = document.getElementById('tooltipContent');
 
+    console.log('Tooltip elements:', { tooltip, tooltipTitle, tooltipContent });
+
     // Check if elements exist
     if (!tooltip || !tooltipTitle || !tooltipContent) {
-        console.error('Tooltip elements not found');
+        console.error('Tooltip elements not found!');
+        console.error('tooltip:', tooltip);
+        console.error('tooltipTitle:', tooltipTitle);
+        console.error('tooltipContent:', tooltipContent);
+        return;
+    }
+
+    if (!canvas) {
+        console.error('Canvas element not found!');
         return;
     }
 
@@ -715,5 +731,10 @@ function initializeTooltips() {
     console.log('Tree DNA tooltip system initialized');
 }
 
-// Initialize tooltips after a short delay to ensure DOM is ready
-setTimeout(initializeTooltips, 100);
+// Initialize tooltips when page is fully loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeTooltips);
+} else {
+    // DOM is already ready
+    initializeTooltips();
+}
