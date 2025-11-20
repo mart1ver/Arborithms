@@ -650,33 +650,29 @@ function getHoveredTree(mouseX) {
     }
 }
 
-// Initialize tooltip system
-function initializeTooltips() {
-    console.log('Attempting to initialize tooltips...');
-    console.log('Canvas element:', canvas);
-    console.log('set1:', set1);
-    console.log('set2:', set2);
-    console.log('set3:', set3);
-
+// Initialize tooltip system with retry mechanism
+function initializeTooltips(retryCount = 0) {
     const tooltip = document.getElementById('treeDnaTooltip');
     const tooltipTitle = document.getElementById('tooltipTitle');
     const tooltipContent = document.getElementById('tooltipContent');
 
-    console.log('Tooltip elements:', { tooltip, tooltipTitle, tooltipContent });
-
-    // Check if elements exist
+    // If elements don't exist yet, retry
     if (!tooltip || !tooltipTitle || !tooltipContent) {
-        console.error('Tooltip elements not found!');
-        console.error('tooltip:', tooltip);
-        console.error('tooltipTitle:', tooltipTitle);
-        console.error('tooltipContent:', tooltipContent);
-        return;
+        if (retryCount < 20) {
+            setTimeout(() => initializeTooltips(retryCount + 1), 100);
+            return;
+        } else {
+            console.error('FAILED: Could not find tooltip elements after 20 retries');
+            return;
+        }
     }
 
     if (!canvas) {
         console.error('Canvas element not found!');
         return;
     }
+
+    console.log('✓ Tooltip system initialized successfully!');
 
     // Show tooltip with tree DNA
     function showTreeTooltip(tree, treeName, mouseX, mouseY) {
@@ -727,12 +723,7 @@ function initializeTooltips() {
     canvas.addEventListener('mouseleave', () => {
         hideTreeTooltip();
     });
-
-    console.log('Tree DNA tooltip system initialized');
 }
 
-// Initialize tooltips when page is fully loaded
-window.addEventListener('load', function() {
-    console.log('Window loaded, initializing tooltips...');
-    initializeTooltips();
-});
+// Start initialization immediately
+initializeTooltips();
